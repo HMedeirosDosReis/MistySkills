@@ -55,3 +55,4 @@ misty.RegisterTimerEvent("moveLeftArm", 1200, false)
 misty.RegisterTimerEvent("moveRightArm", 1200, false)
 misty.RegisterTimerEvent("moveHead", 1200, false)
 misty.RegisterTimerEvent("turning", 3000, false)
+// we need to upload a song and play it
