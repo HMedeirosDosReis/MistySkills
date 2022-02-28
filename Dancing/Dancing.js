@@ -51,8 +51,10 @@ function _turning(repeat = true)
         3000,
         false);
 }
+//needs testing 
+misty.PlayAudio("music.mp3", 100);
 misty.RegisterTimerEvent("moveLeftArm", 1200, false)
 misty.RegisterTimerEvent("moveRightArm", 1200, false)
 misty.RegisterTimerEvent("moveHead", 1200, false)
 misty.RegisterTimerEvent("turning", 3000, false)
-// we need to upload a song and play it
+//needs commenting
