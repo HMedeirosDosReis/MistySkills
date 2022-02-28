@@ -1,0 +1,20 @@
+{
+  "Name": "FaceRecognition",
+  "UniqueId": "2f378334-4caf-4af8-9cd4-d9ae3d06304c",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "verbose",
+  "TimeoutInSeconds": 600,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "SkillStorageLifetime":"LongTerm",
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
