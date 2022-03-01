@@ -24,7 +24,8 @@ function _moveLeftArm(repeat = true)
        if (repeat) misty.RegisterTimerEvent(
         "moveLeftArm",
         1200,
-        false);
+           false);
+    //foesirjgrosiejg
 }
 
 //function that will move misty's right arm
