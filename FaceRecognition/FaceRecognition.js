@@ -210,11 +210,40 @@ function _FaceRec(data)
     }
     if (faceDetected == "unknown person") 
     {
+        misty.ChangeLED(255, 0, 0);//changeto red 
         misty.DisplayImage("e_Contempt.jpg");
         //then misty should learn new faces
+        //need to make a way to differ different names for this person
+        var name = "person";
+        var worked = misty.StartFaceTraining(name);
+        while(!worked)
+            worked = misty.StartFaceTraining(name);
     }
-
-    
+    if(faceDetected == "person")
+    {
+        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
+        misty.DisplayImage("e_Joy.jpg");
+        if(misty.Get("person")>=10 && misty.Get("person")<=99)
+        {
+        //display personalized message to person based on the 10 interactions
+        misty.Set("person", misty.Get("person")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        }
+        if(misty.Get("person")>=100 && misty.Get("person")<=999)
+        {
+        //display personalized message to person based on the 10 interactions
+        misty.Set("person", misty.Get("person")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        }
+        if(misty.Get("person")>=1000 && misty.Get("person")<=9999)
+        {//relationship is getting pretty big, should not just be a message
+        //display personalized message to person based on the 10 interactions
+        misty.Set("person", misty.Get("person")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        }
+        if(misty.Get("person")>=10000 && misty.Get("person")<=99999)
+        {//relationship is getting pretty big, should not just be a message
+        //display personalized message to person based on the 10 interactions
+        misty.Set("person", misty.Get("person")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        }
+    }
     misty.RegisterTimerEvent("registerFaceRec", 5000, false);
 }
 
