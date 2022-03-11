@@ -1,7 +1,7 @@
 
 misty.Debug("The Dancing skill is starting!")
 
-//dispaly an image that will show an expression in its face
+//display an image that will show an expression in its face
 misty.DisplayImage("e_Admiration.jpg", 1, "DefaultImageLayer", false);
 function getRandomInt(min, max) 
 {
