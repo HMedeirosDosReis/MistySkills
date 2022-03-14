@@ -1,8 +1,8 @@
 // Syntax
 //misty.Set(string key, string value, [bool longTermStorage], [string skillUniqueId], [int prePauseMs], [int postPauseMs]);
 
-
-//misty.Set("name", 9, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+//should comment next line after doing the setup, which should be only the first time running this code 
+misty.Set("name", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
 //misty.Debug(misty.Get("name"));
 function _registerFaceRec() 
 {
@@ -17,8 +17,19 @@ function _registerFaceRec()
     // debounceMs to 1000, and keepAlive to false.
     misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
 }
-
-
+function setUp()
+{
+   misty.Set("henrique", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+   misty.Set("pablo", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+   misty.Set("luke", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+   misty.Set("drblythe", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+   misty.Set("gabriela", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+   misty.Set("drj", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+   misty.Set("anikko", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+   misty.Set("person", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+}
+if(misty.Get("name")==0)
+   setUp();
 function _FaceRec(data) 
 {
    
@@ -31,50 +42,66 @@ function _FaceRec(data)
     {
         //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
         misty.DisplayImage("e_Joy.jpg");
-        if(misty.Get("henrique")>=10 && misty.Get("henrique")<=99)
+        if(misty.Get("henrique")>=0 && misty.Get("henrique")<=99)
         {
         //display personalized message to henrique based on the 10 interactions
         misty.Set("henrique", misty.Get("henrique")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        misty.PlayAudio("/audios/henrique/henrique10.mp3") ;
         }
         if(misty.Get("henrique")>=100 && misty.Get("henrique")<=999)
         {
         //display personalized message to henrique based on the 10 interactions
         misty.Set("henrique", misty.Get("henrique")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        misty.PlayAudio("/audios/henrique/henrique100.mp3");
         }
         if(misty.Get("henrique")>=1000 && misty.Get("henrique")<=9999)
         {//relationship is getting pretty big, should not just be a message
         //display personalized message to henrique based on the 10 interactions
         misty.Set("henrique", misty.Get("henrique")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        misty.PlayAudio("/audios/henrique/henrique1000.mp3");
+        misty.DisplayImage("/images/henrique.jpeg");
+        misty.Pause(3000);
+        misty.DisplayImage("e_Joy.jpg");
         }
         if(misty.Get("henrique")>=10000 && misty.Get("henrique")<=99999)
         {//relationship is getting pretty big, should not just be a message
         //display personalized message to henrique based on the 10 interactions
         misty.Set("henrique", misty.Get("henrique")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        misty.DisplayVideo("/yay.mp4");
+        misty.PlayAudio("/audios/henrique/henrique1000.mp3");
+        misty.DisplayImage("/images/henrique.jpeg");
+        misty.Pause(3000);
+        misty.DisplayImage("e_Joy.jpg");
         }
     }
     if (faceDetected == "Pablo") 
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
-       if(misty.Get("pablo")>=10 && misty.Get("pablo")<=99)
+       if(misty.Get("pablo")>=0 && misty.Get("pablo")<=99)
        {
        //display personalized message to pablo based on the 10 interactions
        misty.Set("pablo", misty.Get("pablo")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/pablo/pablo10.mp3");
        }
        if(misty.Get("pablo")>=100 && misty.Get("pablo")<=999)
        {
        //display personalized message to pablo based on the 10 interactions
        misty.Set("pablo", misty.Get("pablo")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/pablo/pablo100.mp3");
        }
        if(misty.Get("pablo")>=1000 && misty.Get("pablo")<=9999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to pablo based on the 10 interactions
        misty.Set("pablo", misty.Get("pablo")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/pablo/pablo1000.mp3");
        }
        if(misty.Get("pablo")>=10000 && misty.Get("pablo")<=99999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to pablo based on the 10 interactions
        misty.Set("pablo", misty.Get("pablo")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.DisplayVideo("/yay.mp4");
+       misty.PlayAudio("/audios/pablo/pablo10000.mp3");
        }
         
     }
@@ -82,25 +109,30 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
-       if(misty.Get("luke")>=10 && misty.Get("luke")<=99)
+       if(misty.Get("luke")>=0 && misty.Get("luke")<=99)
        {
        //display personalized message to luke based on the 10 interactions
        misty.Set("luke", misty.Get("luke")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/luke/luke10.mp3");
        }
        if(misty.Get("luke")>=100 && misty.Get("luke")<=999)
        {
        //display personalized message to luke based on the 10 interactions
        misty.Set("luke", misty.Get("luke")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/luke/luke100.mp3");
        }
        if(misty.Get("luke")>=1000 && misty.Get("luke")<=9999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to luke based on the 10 interactions
        misty.Set("luke", misty.Get("luke")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/luke/luke1000.mp3");
        }
        if(misty.Get("luke")>=10000 && misty.Get("luke")<=99999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to luke based on the 10 interactions
        misty.Set("luke", misty.Get("luke")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.DisplayVideo("/yay.mp4");
+       misty.PlayAudio("/audios/luke/luke10000.mp3");
        }
         
     }
@@ -108,25 +140,17 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
-       if(misty.Get("drblythe")>=10 && misty.Get("drblythe")<=99)
+       if(misty.Get("drblythe")>=0 && misty.Get("drblythe")<=99)
        {
        //display personalized message to drblythe based on the 10 interactions
        misty.Set("drblythe", misty.Get("drblythe")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/drblythe/drblythe10.mp3");
        }
-       if(misty.Get("drblythe")>=100 && misty.Get("drblythe")<=999)
+       if(misty.Get("drblythe")>=100)
        {
        //display personalized message to drblythe based on the 10 interactions
        misty.Set("drblythe", misty.Get("drblythe")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
-       }
-       if(misty.Get("drblythe")>=1000 && misty.Get("drblythe")<=9999)
-       {//relationship is getting pretty big, should not just be a message
-       //display personalized message to drblythe based on the 10 interactions
-       misty.Set("drblythe", misty.Get("drblythe")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
-       }
-       if(misty.Get("drblythe")>=10000 && misty.Get("drblythe")<=99999)
-       {//relationship is getting pretty big, should not just be a message
-       //display personalized message to drblythe based on the 10 interactions
-       misty.Set("drblythe", misty.Get("drblythe")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/drblythe/drblythe100.mp3");
        }
         
     }
@@ -134,25 +158,36 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
-       if(misty.Get("gabriela")>=10 && misty.Get("gabriela")<=99)
+       if(misty.Get("gabriela")>=0 && misty.Get("gabriela")<=99)
        {
        //display personalized message to gabriela based on the 10 interactions
        misty.Set("gabriela", misty.Get("gabriela")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/gabriela/gabriela10.mp3");
        }
        if(misty.Get("gabriela")>=100 && misty.Get("gabriela")<=999)
        {
        //display personalized message to gabriela based on the 10 interactions
        misty.Set("gabriela", misty.Get("gabriela")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/gabriela/gabriela100.mp3");
        }
        if(misty.Get("gabriela")>=1000 && misty.Get("gabriela")<=9999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to gabriela based on the 10 interactions
        misty.Set("gabriela", misty.Get("gabriela")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/gabriela/gabriela1000.mp3");
+       misty.DisplayImage("/images/gabriela.jpeg");
+       misty.Pause(3000);
+       misty.DisplayImage("e_Joy.jpg")
        }
        if(misty.Get("gabriela")>=10000 && misty.Get("gabriela")<=99999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to gabriela based on the 10 interactions
        misty.Set("gabriela", misty.Get("gabriela")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.DisplayVideo("/yay.mp4");
+       misty.PlayAudio("/audios/gabriela/gabriela10000.mp3");
+       misty.DisplayImage("/images/gabriela.jpeg");
+       misty.Pause(3000);
+       misty.DisplayImage("e_Joy.jpg");
        }
         
     }
@@ -160,16 +195,20 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
-       if(misty.Get("drj")>=10 && misty.Get("drj")<=99)
+       if(misty.Get("drj")>=0 && misty.Get("drj")<=99)
        {
        //display personalized message to drj based on the 10 interactions
        misty.Set("drj", misty.Get("drj")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/drj/drj10.mp3");
        }
        if(misty.Get("drj")>=100 && misty.Get("drj")<=999)
        {
        //display personalized message to drj based on the 10 interactions
        misty.Set("drj", misty.Get("drj")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/drj/drj10.mp3");
        }
+       /* I left the following part as a comment. Dr. J should tell us how she 
+       wants misty to react in this ocasions, and then we will provide the code for it.
        if(misty.Get("drj")>=1000 && misty.Get("drj")<=9999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to drj based on the 10 interactions
@@ -179,32 +218,36 @@ function _FaceRec(data)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to drj based on the 10 interactions
        misty.Set("drj", misty.Get("drj")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
-       }
+       }*/
         
     }
     if (faceDetected == "anikko") 
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
-       if(misty.Get("anikko")>=10 && misty.Get("anikko")<=99)
+       if(misty.Get("anikko")>=0 && misty.Get("anikko")<=99)
        {
        //display personalized message to anikko based on the 10 interactions
        misty.Set("anikko", misty.Get("anikko")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/anikko/anikko10.mp3");
        }
        if(misty.Get("anikko")>=100 && misty.Get("anikko")<=999)
        {
        //display personalized message to anikko based on the 10 interactions
        misty.Set("anikko", misty.Get("anikko")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/anikko/anikko100.mp3");
        }
        if(misty.Get("anikko")>=1000 && misty.Get("anikko")<=9999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to anikko based on the 10 interactions
        misty.Set("anikko", misty.Get("anikko")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/anikko/anikko1000.mp3");
        }
        if(misty.Get("anikko")>=10000 && misty.Get("anikko")<=99999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to anikko based on the 10 interactions
        misty.Set("anikko", misty.Get("anikko")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+       misty.PlayAudio("/audios/anikko/anikko10000.mp3");
        }
         
     }
@@ -213,38 +256,39 @@ function _FaceRec(data)
         misty.ChangeLED(255, 0, 0);//changeto red 
         misty.DisplayImage("e_Contempt.jpg");
         //then misty should learn new faces
-        //need to make a way to differ different names for this person
+        //maybe? need to make a way to differ different names for this person
         var name = "person";
         var worked = misty.StartFaceTraining(name);
         while(!worked)
             worked = misty.StartFaceTraining(name);
+        misty.PlayAudio("/audios/unknown.mp3");
     }
     if(faceDetected == "person")
     {
         //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
         misty.DisplayImage("e_Joy.jpg");
-        if(misty.Get("person")>=10 && misty.Get("person")<=99)
+        if(misty.Get("person")>=0)
         {
         //display personalized message to person based on the 10 interactions
         misty.Set("person", misty.Get("person")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
-        }
-        if(misty.Get("person")>=100 && misty.Get("person")<=999)
-        {
-        //display personalized message to person based on the 10 interactions
-        misty.Set("person", misty.Get("person")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
-        }
-        if(misty.Get("person")>=1000 && misty.Get("person")<=9999)
-        {//relationship is getting pretty big, should not just be a message
-        //display personalized message to person based on the 10 interactions
-        misty.Set("person", misty.Get("person")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
-        }
-        if(misty.Get("person")>=10000 && misty.Get("person")<=99999)
-        {//relationship is getting pretty big, should not just be a message
-        //display personalized message to person based on the 10 interactions
-        misty.Set("person", misty.Get("person")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        misty.PlayAudio("/audios/person/person10.mp3");
         }
     }
-    misty.RegisterTimerEvent("registerFaceRec", 5000, false);
+    misty.Debug(misty.Get("henrique"));
+    misty.Debug(misty.Get("pablo"));
+    misty.Debug(misty.Get("luke"));
+    misty.Debug(misty.Get("drblythe"));
+    misty.Debug(misty.Get("gabriela"));
+    misty.Debug(misty.Get("drj"));
+    misty.Debug(misty.Get("anikko"));
+    misty.Debug(misty.Get("person"));
+    misty.RegisterTimerEvent("registerFaceRec", 10000, false);
 }
 
-misty.RegisterTimerEvent("registerFaceRec", 5000, false)
+misty.RegisterTimerEvent("registerFaceRec", 10000, false);
+// pretty much done. 
+// still needs:
+      // testing carefully all the ifs
+      // commenting 
+      // maybe change/add relationships?
+      // train Anikko's face
