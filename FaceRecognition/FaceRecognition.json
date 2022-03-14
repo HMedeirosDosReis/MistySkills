@@ -8,7 +8,7 @@
   ],
   "Language": "javascript",
   "BroadcastMode": "verbose",
-  "TimeoutInSeconds": 600,
+  "TimeoutInSeconds": 60000000,
   "CleanupOnCancel": true,
   "WriteToLog": false,
   "SkillStorageLifetime":"LongTerm",
