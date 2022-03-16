@@ -2,7 +2,7 @@
 //misty.Set(string key, string value, [bool longTermStorage], [string skillUniqueId], [int prePauseMs], [int postPauseMs]);
 
 //should comment next line after doing the setup, which should be only the first time running this code 
-//misty.Set("name", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+misty.Set("name", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
 //misty.Debug(misty.Get("name"));
 function _registerFaceRec() 
 {
