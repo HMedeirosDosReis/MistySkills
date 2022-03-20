@@ -1,0 +1,18 @@
+{
+  "Name": "Reaction",
+  "UniqueId": "e7ace0b4-8af8-48ba-84ed-89108f408972",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "SkillStorageLifetime":"LongTerm",
+  "BroadcastMode": "verbose",
+  "TimeoutInSeconds": 6000,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "forceHeadCalibration":false
+  }
+}

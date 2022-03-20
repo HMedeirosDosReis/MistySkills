@@ -1,7 +1,19 @@
+/*
+To proceed with this code we need to be able to send external requests 
+our dashboard. this seems to be our best bet at sending/getting data 
+from/to mistys.
+
+We were thinking about sockets, but this may not work. 
+
+
+more on:
+https://docs.mistyrobotics.com/misty-ii/rest-api/api-reference/#sendexternalrequest
+*/
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+//need to get the images
 function _playWithHuman() {
   let num = getRandomInt(1, 9);
   if (num >= 0 && num <= 2) {
@@ -40,24 +52,31 @@ function _playwWithMisty() {
   connect();
   //connect to the other misty somehow
   //********** */
+  //let rock = 0, paper = 1, scissors = 2
   let num = getRandomInt(1, 9);
   if (num >= 0 && num <= 2) {
     misty.DisplayImage("rock.jpg");
     misty.Debug("rock");
-    //register data
+    misty1 = 0;
     //send the data to the other misty
+    //get data from the other misty
+    //misty2=
   } else if (num >= 3 && num <= 6) {
     misty.DisplayImage("paper.jpg");
     misty.Debug("paper");
-    //register data
+    misty1 = 1;
     //send the data to the other misty
+    //get data from the other misty
+    //misty2=
   } else {
     misty.DisplayImage("scissors.jpg");
     misty.Debug("scissors");
-    //register data
+    misty1 = 2;
     //send the data to the other misty
+    //get data from the other misty
+    //misty2=
   }
-  score();
+  score(misty1, misty2);
   misty.RegisterTimerEvent("playWithMisty", 1200, false);
 }
 //if(something that tells me if im supposed to play with human)
