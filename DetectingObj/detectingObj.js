@@ -249,13 +249,18 @@ function start_object_detection() {
     // Argument 3: MaxTrackHistory - Consistently maintains ID of object across x points in history
     // Argument 4: (optinal) DelegateType (int) - 0 (CPU), 1 (GPU), 2 (NNAPI), 3 (Hexagon)  
     misty.StartObjectDetector(0.51, 0, 25);
-
+if(currObject == "cup" || theA == "cell phone" || theA == "backpack"){
+  misty.Stop();
+  misty.Debug("Misty detect haults here... the object found is a " + currObject );
+  
+}
     //there will be much more complexity here later...misty
     //have misty move in a set direction while looking for an object
     //  misty.DriveTime(50, 0, 5000); //literally needs to stop if the object is detected(otherwise it will bump)
 
 }
 var theA = "";
+var currObject = "";
 function _object_detection(data) {
     var object_info = data.PropertyTestResults[0].PropertyParent;
     misty.Debug("OBJ detection code is now executing...");
@@ -274,6 +279,11 @@ function _object_detection(data) {
         currObject = theA; // set global variable to current object_info
         // misty.UnregisterEvent("object_detection");
         misty.Stop();
+        //misty.Pause(30000);
+        misty.UnregisterEvent("Hazard");
+        misty.UnregisterEvent("drive_random");
+        misty.UnregisterEvent("look_around");
+        misty.UnregisterEvent("object_detection");
         misty.UnregisterAllEvents();
     }
     else if (theA == "cell phone" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.55) { //when we add funtionality for user to select object this will instead look like this 
@@ -281,13 +291,24 @@ function _object_detection(data) {
         misty.Debug("we got a cell phone folks");
         misty.Stop();
         misty.ChangeLED(33, 125, 70);
+        currObject = theA;
+        misty.UnregisterEvent("Hazard");
+        misty.UnregisterEvent("drive_random");
+        misty.UnregisterEvent("look_around");
+        misty.UnregisterEvent("object_detection");
         misty.UnregisterAllEvents();
     }
     else if (theA == "suitcase" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.55) {
-        misty.Debug("we found someones HOMEWORK yall");
+        misty.Debug("we found MISTYS HOME yall");
         misty.Stop();
         misty.ChangeLED(10, 12, 150);
+        misty.GetAudioList();
+        misty.UnregisterEvent("Hazard");
+        misty.UnregisterEvent("drive_random");
+        misty.UnregisterEvent("look_around");
+        misty.UnregisterEvent("object_detection");
         misty.UnregisterAllEvents();
+        currObject = theA;
     }
     else if (theA != "cup" && theA != "cell phone" && theA != "backpack") //DEBUG displayed '' instead of "" so maybe its a char instead of string
     {
