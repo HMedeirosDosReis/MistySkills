@@ -1,4 +1,5 @@
 // THIS CODE CURRENTLY CAN DETECT an object and move but will stop unusually before reaching objects when other objects are near
+//works, but missing movement test///
 
 //start_object_detection();
 //several ways to implement the object detection
