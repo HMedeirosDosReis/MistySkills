@@ -1,8 +1,6 @@
 /*needs to work on:
         Definition a little bit more
-        Looping need proper testing
         More actions 
-        testing
 */
 
 /* Notes:
@@ -43,7 +41,7 @@ function registerHeadPitch() {
   misty.AddReturnProperty("head_pitch", "Value");
   misty.AddPropertyTest("head_pitch", "SensorId", "==", "ahp", "string");
   //event --done
-  misty.RegisterEvent("head_pitch", "ActuatorPosition", 100, true);
+  misty.RegisterEvent("head_pitch", "ActuatorPosition", 500, true);
 }
 // Register listener for head yaw position from ActuatorPosition events
 function registerHeadYaw() {
@@ -51,7 +49,7 @@ function registerHeadYaw() {
   misty.AddReturnProperty("head_yaw", "Value");
   misty.AddPropertyTest("head_yaw", "SensorId", "==", "ahy", "string");
   //event --done
-  misty.RegisterEvent("head_yaw", "ActuatorPosition", 100, true);
+  misty.RegisterEvent("head_yaw", "ActuatorPosition", 500, true);
 }
 
 // Person Tracking
@@ -64,13 +62,13 @@ function startPersonTracking() {
     "string"
   );
   // event --done
-  misty.RegisterEvent("person_detection", "ObjectDetection", 500, true);
+  misty.RegisterEvent("person_detection", "ObjectDetection", 1000, true);
   misty.StartObjectDetector(0.5, 0, 15);
 }
 // Human Pose Estimation
 function startHumanPoseEstimation() {
   //event --done
-  misty.RegisterEvent("human_pose_estimation", "PoseEstimation", 100, true);
+  misty.RegisterEvent("human_pose_estimation", "PoseEstimation", 500, true);
   // Arguments: Minimum Confidence (float) 0.0 to 1.0, ModelId (int) 0 or 1, DelegateType (int) - 0 (CPU), 1 (GPU), 2 (NNAPI), 3 (Hexagon)
   misty.StartPoseEstimation(0.2, 0, 1);
 }
@@ -96,9 +94,9 @@ function start() {
 
   misty.Set("next_look_side", "right", false); //
   //event --done
-  misty.RegisterTimerEvent("look_side_to_side", 12000, true); //
+  misty.RegisterTimerEvent("look_side_to_side", 1800, true); //
   //event --done
-  misty.RegisterTimerEvent("move_arms_random", 6000, true); //
+  //misty.RegisterTimerEvent("move_arms_random", 6000, true); //
 }
 
 /*event functions---loops*/
@@ -241,6 +239,7 @@ function _human_pose_estimation(data) {
       ) {
         if (ScaleValid(keypoints[7], keypoints[5])) {
           waveBack("left");
+          misty.PlayAudio("003-Waaa.wav");
         }
       }
     }
@@ -256,6 +255,7 @@ function _human_pose_estimation(data) {
       ) {
         if (ScaleValid(keypoints[8], keypoints[6])) {
           waveBack("right");
+          misty.PlayAudio("002-Ahhh.wav");
         }
       }
     }
