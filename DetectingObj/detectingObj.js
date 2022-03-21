@@ -82,7 +82,8 @@ misty.RegisterEvent("Hazard", "HazardNotification", 1, true);
 //_look_around(); //start moving misty head to look in different directions
 start_object_detection();
 // ------------------------ Random Drive -------------------------------------
-
+//instead of completely random drives we may have her drive a certain path in timed intervals
+//this way she isn't randomly driving in an arc...path may still be random but not as much
 function _drive_random() {
     misty.Debug("Random Drive -> Now Issuing a Drive Command");
     if (Math.random() <= 0.2) {
@@ -223,7 +224,7 @@ function _look_around() {
     misty.MoveHeadDegrees(getRandomInt(-40, 20), getRandomInt(-35, 35), getRandomInt(-45, 45), 40);
     misty.RegisterTimerEvent("look_around", getRandomInt(5, 10) * 1000, false);
 }
-misty.RegisterTimerEvent("look_around", 100, false);
+misty.RegisterTimerEvent("look_around", 100, true); //changed from false to true
 //need to add something extra here. If misty stops because what is directly infront..adjust head setting to see and detect whats infront of her
 //to make sure the object in question isn't there
 // -------------------------- Support Function------------------------------------------------
@@ -242,18 +243,21 @@ function start_object_detection() {
     // Argument 2: Event Name (do not change this) 
     // Argument 3: Debounce in milliseconds (least time between updates)
     // Argument 4: Live forever
-    misty.RegisterEvent("object_detection", 1000, false);
+    misty.RegisterEvent("object_detection", 2000, false); //search for the object every few seconds until it is found
 
     // Argument 1: Minimum confidence required (float) 0.0 to 1.0 
     // Argument 2: ModelId (int) 0 - 3 
     // Argument 3: MaxTrackHistory - Consistently maintains ID of object across x points in history
     // Argument 4: (optinal) DelegateType (int) - 0 (CPU), 1 (GPU), 2 (NNAPI), 3 (Hexagon)  
     misty.StartObjectDetector(0.51, 0, 25);
-if(currObject == "cup" || theA == "cell phone" || theA == "backpack"){
+
+    /*
+if(currObject == "cup" || theA == "cell phone" || theA == "backpack" || theA == "chair"){
   misty.Stop();
   misty.Debug("Misty detect haults here... the object found is a " + currObject );
   
 }
+*/
     //there will be much more complexity here later...misty
     //have misty move in a set direction while looking for an object
     //  misty.DriveTime(50, 0, 5000); //literally needs to stop if the object is detected(otherwise it will bump)
@@ -271,7 +275,7 @@ function _object_detection(data) {
         misty.Debug("We have located the DARN CUP your job is DONE HERE STOP");
         misty.ChangeLED(50, 150, 50);
         //misty.Stop();
-        misty.MoveArmDegrees("both", -80, 100);
+        misty.MoveArmDegrees("both", -80, 100); //placeholder for misty doing something once she find
         // misty.PlayAudio("Anikko10.mp3");
         misty.GetAudioList();
 
@@ -286,11 +290,11 @@ function _object_detection(data) {
         misty.UnregisterEvent("object_detection");
         misty.UnregisterAllEvents();
     }
-    else if (theA == "cell phone" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.55) { //when we add funtionality for user to select object this will instead look like this 
+    else if (theA == "cell phone" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60) { //when we add funtionality for user to select object this will instead look like this 
         //if(theA == "cell phone" && userSelectedObject == "cell phone"){}
         misty.Debug("we got a cell phone folks");
         misty.Stop();
-        misty.ChangeLED(33, 125, 70);
+        misty.ChangeLED(133, 125, 70);
         currObject = theA;
         misty.UnregisterEvent("Hazard");
         misty.UnregisterEvent("drive_random");
@@ -298,11 +302,11 @@ function _object_detection(data) {
         misty.UnregisterEvent("object_detection");
         misty.UnregisterAllEvents();
     }
-    else if (theA == "suitcase" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.55) {
-        misty.Debug("we found MISTYS HOME yall");
+    else if (theA == "suitcase" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60) {
+        misty.Debug("we found MISTYS HOME yall..aka a suitcase");
         misty.Stop();
         misty.ChangeLED(10, 12, 150);
-        misty.GetAudioList();
+        misty.GetAudioList(); //instead you should play file that says it found the suitcase.....
         misty.UnregisterEvent("Hazard");
         misty.UnregisterEvent("drive_random");
         misty.UnregisterEvent("look_around");
@@ -310,7 +314,24 @@ function _object_detection(data) {
         misty.UnregisterAllEvents();
         currObject = theA;
     }
-    else if (theA != "cup" && theA != "cell phone" && theA != "backpack") //DEBUG displayed '' instead of "" so maybe its a char instead of string
+    else if (theA == "chair" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60 ) { 
+      misty.Debug("we found a stupid chair once again man.......");
+      misty.Stop();
+
+      misty.ChangeLED(210, 102, 150);
+      misty.MoveArmDegrees("both", -80, 100);//literally doing the same thing but we will update object behaviour later
+      misty.GetAudioList(); //play an audio file that says it found the chair.........
+      //put code here that resets misty head position,,LEDs and arms back down
+      //
+      //
+      misty.UnregisterEvent("Hazard");
+      misty.UnregisterEvent("drive_random");
+      misty.UnregisterEvent("look_around");
+      misty.UnregisterEvent("object_detection");
+      misty.UnregisterAllEvents();
+      currObject = theA;
+  }
+    else if (theA != "cup" && theA != "cell phone" && theA != "backpack" && theA != "chair") //DEBUG displayed '' instead of "" so maybe its a char instead of string
     {
         //please move the object out of mistys view..... this will have added complexity..misty
         //she should and will be able to detect the object, if it isn't the one being search for
@@ -323,9 +344,9 @@ function _object_detection(data) {
 
 
     // To access confidence and pitch
-    misty.Debug(object_info.Confidence);
-    misty.Debug(object_info.Pitch);
-    misty.Debug(object_info.Description);
+   // misty.Debug(object_info.Confidence);
+    //misty.Debug(object_info.Pitch);
+    //gmisty.Debug(object_info.Description);
 }
 
 misty.RegisterEvent("object_detection", "ObjectDetection", 500, true); //misty will keep searching for obj..misty
