@@ -1,3 +1,6 @@
+/*
+Displays different messages based on how many times misty detected and recognized the face, creating a relationship with the person
+*/
 // Syntax
 //misty.Set(string key, string value, [bool longTermStorage], [string skillUniqueId], [int prePauseMs], [int postPauseMs]);
 
@@ -17,6 +20,7 @@ function _registerFaceRec()
     // debounceMs to 1000, and keepAlive to false.
     misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
 }
+//set the faces that misty already recognizes
 function setUp()
 {
    misty.Set("henrique", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
@@ -28,11 +32,14 @@ function setUp()
    misty.Set("anikko", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
    misty.Set("person", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
 }
+//if its the first time assign the string name 
 if(misty.Get("name")==0)
 {
    setUp();
    misty.Set("name", 1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
 }
+
+//method that will recognize the faces and display messages
 function _FaceRec(data) 
 {
    
@@ -40,23 +47,28 @@ function _FaceRec(data)
     
     misty.Debug("Misty sees " + faceDetected);
 
-    
+    //if misty detects Henrique's face
     if (faceDetected == "Henrique") //need work on the messages
     {
         //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
+        //display an image 
         misty.DisplayImage("e_Joy.jpg");
+        //if misty recognized his face less than 100 times 
         if(misty.Get("henrique")>=0 && misty.Get("henrique")<=99)
         {
         //display personalized message to henrique based on the 10 interactions
         misty.Set("henrique", misty.Get("henrique")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+        //play an audio message
         misty.PlayAudio("henrique10.mp3") ;
         }
+        //if misty recognized his face less than 1000 times
         else if(misty.Get("henrique")>=100 && misty.Get("henrique")<=999)
         {
         //display personalized message to henrique based on the 10 interactions
         misty.Set("henrique", misty.Get("henrique")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
         misty.PlayAudio("henrique100.mp3");
         }
+        //if misty recognized his face less than 10000 times
         else if(misty.Get("henrique")>=1000 && misty.Get("henrique")<=9999)
         {//relationship is getting pretty big, should not just be a message
         //display personalized message to henrique based on the 10 interactions
@@ -66,6 +78,7 @@ function _FaceRec(data)
         misty.Pause(3000);
         misty.DisplayImage("e_Joy.jpg");
         }
+        //if misty recognized his face less than 10000 times
         else if(misty.Get("henrique")>=10000)
         {//relationship is getting pretty big, should not just be a message
         //display personalized message to henrique based on the 10 interactions
@@ -81,18 +94,21 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
+       //if misty recognized his face less than 100 times
        if(misty.Get("pablo")>=0 && misty.Get("pablo")<=99)
        {
        //display personalized message to pablo based on the 10 interactions
        misty.Set("pablo", misty.Get("pablo")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
        misty.PlayAudio("pablo10.mp3");
        }
+       //if misty recognized his face less than 1000 times
        if(misty.Get("pablo")>=100 && misty.Get("pablo")<=999)
        {
        //display personalized message to pablo based on the 10 interactions
        misty.Set("pablo", misty.Get("pablo")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
        misty.PlayAudio("pablo100.mp3");
        }
+       //if misty recognized his face less than 10000 times
        if(misty.Get("pablo")>=1000 && misty.Get("pablo")<=9999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to pablo based on the 10 interactions
@@ -112,18 +128,21 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
+       //if misty recognized his face less than 100 times
        if(misty.Get("luke")>=0 && misty.Get("luke")<=99)
        {
        //display personalized message to luke based on the 10 interactions
        misty.Set("luke", misty.Get("luke")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
        misty.PlayAudio("luke10.mp3");
        }
+       //if misty recognized his face less than 1000 times
        if(misty.Get("luke")>=100 && misty.Get("luke")<=999)
        {
        //display personalized message to luke based on the 10 interactions
        misty.Set("luke", misty.Get("luke")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
        misty.PlayAudio("luke100.mp3");
        }
+       //if misty recognized his face less than 10000 times
        if(misty.Get("luke")>=1000 && misty.Get("luke")<=9999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to luke based on the 10 interactions
@@ -143,12 +162,14 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
+       //if misty recognized his face less than 100 times
        if(misty.Get("drblythe")>=0 && misty.Get("drblythe")<=99)
        {
        //display personalized message to drblythe based on the 10 interactions
        misty.Set("drblythe", misty.Get("drblythe")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
        misty.PlayAudio("drblythe10.mp3");
        }
+       
        if(misty.Get("drblythe")>=100)
        {
        //display personalized message to drblythe based on the 10 interactions
@@ -161,18 +182,21 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
+       //if misty recognized her face less than 100 times
        if(misty.Get("gabriela")>=0 && misty.Get("gabriela")<=99)
        {
        //display personalized message to gabriela based on the 10 interactions
        misty.Set("gabriela", misty.Get("gabriela")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
        misty.PlayAudio("gabriela10.mp3");
        }
+       //if misty recognized his face less than 1000 times
        if(misty.Get("gabriela")>=100 && misty.Get("gabriela")<=999)
        {
        //display personalized message to gabriela based on the 10 interactions
        misty.Set("gabriela", misty.Get("gabriela")+1, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
        misty.PlayAudio("gabriela100.mp3");
        }
+       //if misty recognized her face less than 10000 times
        if(misty.Get("gabriela")>=1000 && misty.Get("gabriela")<=9999)
        {//relationship is getting pretty big, should not just be a message
        //display personalized message to gabriela based on the 10 interactions
@@ -198,6 +222,7 @@ function _FaceRec(data)
     {
        //if(misty.Get("name")==```null```?) something that tells that this is the first time using the variable
        misty.DisplayImage("e_Joy.jpg");
+
        if(misty.Get("drj")>=0 && misty.Get("drj")<=99)
        {
        //display personalized message to drj based on the 10 interactions
