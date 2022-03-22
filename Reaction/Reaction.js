@@ -106,16 +106,10 @@ function _look_side_to_side() {
     (new Date() - new Date(misty.Get("last_person_update_at"))) / 1000 > 4
   ) {
     if (misty.Get("next_look_side") == "right") {
-      misty.MoveHead(
-        getRandomInt(-25, -10),
-        0,
-        getRandomInt(-40, -20),
-        null,
-        4
-      );
+      misty.MoveHead(0, 0, getRandomInt(-40, -20), null, 4);
       misty.Set("next_look_side", "left", false);
     } else {
-      misty.MoveHead(getRandomInt(-25, -10), 0, getRandomInt(20, 40), null, 4);
+      misty.MoveHead(0, 0, getRandomInt(20, 40), null, 4);
       misty.Set("next_look_side", "right", false);
     }
   }
@@ -239,7 +233,6 @@ function _human_pose_estimation(data) {
       ) {
         if (ScaleValid(keypoints[7], keypoints[5])) {
           waveBack("left");
-          misty.PlayAudio("003-Waaa.wav");
         }
       }
     }
@@ -255,7 +248,34 @@ function _human_pose_estimation(data) {
       ) {
         if (ScaleValid(keypoints[8], keypoints[6])) {
           waveBack("right");
-          misty.PlayAudio("002-Ahhh.wav");
+        }
+      }
+    } else if (
+      confident(keypoints[5]) &&
+      confident(keypoints[7]) &&
+      confident(keypoints[9])
+    ) {
+      if (
+        pairCorrelation(keypoints[7], keypoints[9]) //&&
+        //pairCorrelation(keypoints[7], keypoints[9])
+      ) {
+        if (ScaleValid(keypoints[7], keypoints[9])) {
+          //what should it do?---represent raise left hand
+          misty.DisplayText("raised left hand", "DefaultTextLayer");
+        }
+      }
+    } else if (
+      confident(keypoints[6]) &&
+      confident(keypoints[8]) &&
+      confident(keypoints[10])
+    ) {
+      if (
+        pairCorrelation(keypoints[8], keypoints[10]) //&&
+        //pairCorrelation(keypoints[8], keypoints[10])
+      ) {
+        if (ScaleValid(keypoints[6], keypoints[8])) {
+          //what should it do?---represent raise right hand
+          misty.DisplayText("raised right hand", "DefaultTextLayer");
         }
       }
     }
@@ -324,12 +344,14 @@ function animateWaveBack(arm) {
 
   // Arms
   if (arm == "left") {
+    misty.PlayAudio("003-Waaa.wav");
     misty.MoveArms(80, -89, null, null, 0.75, null);
     misty.Pause(1000);
     misty.MoveArms(80, 0, null, null, 0.75, null);
     misty.Pause(750);
     misty.MoveArms(80, -89, null, null, 0.75, null);
   } else {
+    misty.PlayAudio("002-Ahhh.wav");
     misty.MoveArms(-89, 80, null, null, 0.75, null);
     misty.Pause(1000);
     misty.MoveArms(0, 80, null, null, 0.75, null);
