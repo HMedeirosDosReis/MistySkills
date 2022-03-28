@@ -1,0 +1,17 @@
+{
+  "Name": "TextToSoundGoogle",
+  "UniqueId": "051c18d4-1d43-4cea-9f61-32c789801f69",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "verbose",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "APIKEY_Google": "Henrique has key, but it is on his credit card...."
+  }
+}
