@@ -1,0 +1,18 @@
+{
+  "Name": "Translation",
+  "UniqueId": "5e3d9d37-c28b-48d9-b01c-1a8453e8570f",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "verbose",
+  "TimeoutInSeconds": 600,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "APIKEY_GoogleSTT": "Henrique has key, but it is on his credit card....",
+    "APIKEY_GoogleTTS": "Henrique has key, but it is on his credit card...."
+  }
+}
