@@ -13,6 +13,7 @@
   "WriteToLog": false,
   "Parameters": {
     "APIKEY_GoogleSTT": "Henrique has key, but it is on his credit card....",
-    "APIKEY_GoogleTTS": "Henrique has key, but it is on his credit card...."
+    "APIKEY_GoogleTTS": "Henrique has key, but it is on his credit card....",
+    "APIKEY_GoogleTranslate":"Henrique has key, but it is on his credit card...."
   }
 }
