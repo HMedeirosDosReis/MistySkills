@@ -1,11 +1,11 @@
 //start with sound to text
-/*register_voice_record_complete();
+register_voice_record_complete();
 misty.Pause(1000);
 // parameters: overwriteExisting, silenceTimeout, maxSpeechLength, requireKeyPhrase, captureFile, speechRecognitionLanguage, key
 //language set to english
 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
-var translate;
-var translation;
+misty.Set("translate", "", false);
+misty.Set("translation","",false);
 //function that will check if it worked and then display the text
 function _voice_record_complete_message(data) {
     //debugging message
@@ -13,14 +13,16 @@ function _voice_record_complete_message(data) {
     //store return values from capture of speach
     var filename = data.AdditionalResults[0];
     let success = data.AdditionalResults[1];
-    let stt_result = data.AdditionalResults[4];
+    stt_result = data.AdditionalResults[4];
     //if it works
     if (success) {
         //debugging messages to check if it works
         misty.Debug("Info: Audio recording successful.");
         misty.Debug(filename);
         misty.Debug("Misty Heard: " + stt_result);
-        translate = sst_result;
+       
+        misty.Set("translate",stt_result,false);
+        misty.Debug("translate:"+misty.Get("translate"));
 
     }
 }
@@ -34,7 +36,7 @@ function register_voice_record_complete() {
     misty.AddReturnProperty("voice_record_complete_message", "SpeechRecognitionResult");
     misty.RegisterEvent("voice_record_complete_message", "VoiceRecord", 100, true);
 }
-*/
+misty.Pause(8000);
 
 //translate
 /*
@@ -43,23 +45,31 @@ function register_voice_record_complete() {
 *
 *
 */
-//translateText(translate)
-translateText("this is a test")
+//misty.Debug(misty.Get("translate"));
+translateText(misty.Get("translate"));
 
 function translateText(text) {
     var arguments = JSON.stringify({ 
         "q": text,
         "source": "en",//from
-        "target": "pt",//to
+        "target": "es",//to
         "format": "text"
     })
-    var data = misty.SendExternalRequest("POST","https://translation.googleapis.com/language/translate/v2?key="+_params.APIKEY_GoogleTranslate,null,null,arguments,false,false,null,"application/json");
-    misty.Debug(jSON.stringify(data));
-    misty.Debug(data.translations[1].translatedText);
+    misty.SendExternalRequest("POST","https://translation.googleapis.com/language/translate/v2?key="+_params.APIKEY_GoogleTranslate,null,null,arguments,false,false,null,"application/json","_translatedData");
+    //misty.Debug(JSON.stringify(data));
 }
-/*
+
+function _translatedData(data)
+{
+    let response = JSON.parse(data.Result.ResponseObject.Data);
+    let textToSpeak = response.data.translations[0].translatedText;
+    misty.Debug(textToSpeak);
+    misty.Set("translation",textToSpeak,false);
+}
+misty.Pause(3000);
 //text to sound
-speakTheText(translation);
+//misty.Debug(misty.Get("translation"));
+speakTheText(misty.Get("translation"));
 
 // ==================== Send Text To Google ===========================
 
@@ -70,7 +80,7 @@ function speakTheText(text) {
             'text': text
         },
         'voice': {
-            'languageCode': "pt-BR",//choose languase for misty to speak
+            'languageCode': "es-ES",//choose languase for misty to speak
             'ssmlGender': "FEMALE" //choose gender
         },
         'audioConfig': {
@@ -101,4 +111,6 @@ misty.RegisterUserEvent("speakTheText", true);
 function _speakTheText(data) {
         //misty.Debug(JSON.stringify(data));
         speakTheText(data.text);
-}*/
+}
+
+misty.Debug("end");
