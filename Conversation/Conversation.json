@@ -1,0 +1,20 @@
+{
+    "Name": "Conversation",
+    "UniqueId": "da5ab156-7627-4df7-a820-5436dcb03ac4",
+    "Description": "Misty attempts to hold conversation with you",
+    "StartupRules": [
+      "Manual",
+      "Robot"
+    ],
+    "Language": "javascript",
+    "BroadcastMode": "verbose",
+    "TimeoutInSeconds": 600,
+    "CleanupOnCancel": true,
+    "WriteToLog": false,
+    "Parameters": {
+      "APIKEY_GoogleSTT": "",
+      "APIKEY_GoogleTTS": ""
+
+    }
+  }
+  
