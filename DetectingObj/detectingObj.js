@@ -2,6 +2,15 @@
 
 // THIS CODE CURRENTLY CAN DETECT an object and move but will stop unusually before reaching objects when other objects are near
 
+  //In ORDER TO STOP THE OTHER ROBOT WE NEED AN EVENT HERE THAT QUERIES THE DASHBOARD FOR A BOOLEAN
+         //ex: ObjectFound = false
+         //if the object is found POST the update to OBjectFound = true 
+         //ex: sendexternalrequest(GET,.....dashboard);
+         //will probably check that data every two seconds...misty
+         //
+         //if time permits, instead of stopping the robot, we can have it follow the sound of the other robot 
+         //to reach its coordinates
+        
 
 // Misty Randomly Wanders around 
 
@@ -193,26 +202,20 @@ function _object_detection(data) {
     {
         //we can do this for each object we select on dashboard....whenever that functionality is added
         misty.Debug("We have located the CUP your job is DONE HERE STOP");
+
+        //misty reacts to finding the cup
         misty.ChangeLED(50, 150, 50);
-        misty.MoveArmDegrees("both", 90, 100); //misty reacts to finding object
+        misty.MoveArmDegrees("both", 90, 100); 
         misty.MoveHeadPosition(-5, 0, 0, 100);
         misty.PlayAudio("Ifoundcup.mp3");
-         //In ORDER TO STOP THE OTHER ROBOT WE NEED AN EVENT HERE THAT QUERIES THE DASHBOARD FOR A BOOLEAN
-         //ex: ObjectFound = false
-         //if the object is found POST the update to OBjectFound = true 
-         //ex: sendexternalrequest(GET,.....dashboard);
-         //will probably check that data every two seconds...misty
-         //
-         //if time permits, instead of stopping the robot, we can have it follow the sound of the other robot 
-         //to reach its coordinates
-        /// Have misty do something... react to the object.. "I found the cup! ... wave arms up in excitement"
-        currObject = theA; // set global variable to current object_info
-    
+       
+        //misty stops all operations
         misty.Stop();
         misty.Pause(3000);
         misty.MoveArmDegrees("both", 0, 100); //reset positions to normal.
         misty.MoveHeadPosition(0, 0, 0, 100);
 
+         //unregister events so that misty doesn't continue moving/looking around 
         misty.UnregisterEvent("Hazard");
         misty.UnregisterEvent("drive_random");
         misty.UnregisterEvent("look_around");
@@ -221,15 +224,18 @@ function _object_detection(data) {
     }
     else if (theA == "laptop" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60) { //when we add funtionality for user to select object this will instead look like this 
         //
-        misty.Debug("we got a cell phone folks");
+        misty.Debug("found the laptop");
         
+        //misty reacts to finding the laptop
         misty.ChangeLED(133, 125, 70);
         misty.MoveHeadPosition(-5, 0, 0, 100);
         misty.MoveArmDegrees("both", 90, 100);
         misty.PlayAudio("Ifoundlaptop.mp3");
+
+        //misty stops all operations
         misty.Stop();
         misty.Pause(3000);
-        misty.MoveHeadPosition(0, 0, 0, 100);
+        misty.MoveHeadPosition(0, 0, 0, 100); //reset head and arm position to normal
         misty.MoveArmDegrees("both", 0, 100);
         misty.UnregisterEvent("Hazard");
         misty.UnregisterEvent("drive_random");
@@ -240,15 +246,19 @@ function _object_detection(data) {
     else if (theA == "suitcase" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60) {
         misty.Debug("we found MISTYS HOME yall..aka a suitcase");
       
+        //misty reacts to finding her suitcase
         misty.ChangeLED(10, 12, 150);
-        misty.GetAudioList(); //instead you should play file that says it found the suitcase.....
         misty.MoveHeadPosition(-5, 0, 0, 100);
         misty.MoveArmDegrees("both", 90, 100);
         misty.PlayAudio("Ifoundsuitcase.mp3");
+
+        //misty halts all operations
         misty.Stop();
         misty.Pause(3000);
-        misty.MoveHeadPosition(0, 0, 0, 100);
+        misty.MoveHeadPosition(0, 0, 0, 100);//reset head and arm positions
         misty.MoveArmDegrees("both", 0, 100);
+
+        //unregister events so that misty doesn't continue moving/looking around 
         misty.UnregisterEvent("Hazard");
         misty.UnregisterEvent("drive_random");
         misty.UnregisterEvent("look_around");
@@ -260,17 +270,19 @@ function _object_detection(data) {
       misty.Debug("we found a chair once again man.......");
       misty.Stop();
 
+      //misty reacts to finding a chair
       misty.ChangeLED(210, 102, 150);
-      misty.MoveArmDegrees("both", 90, 100);//literally doing the same thing but we will update object behaviour later
-      misty.PlayAudio("Ifoundchair.mp3");
-      misty.MoveHeadPosition(-5, 0, 0, 100);
       misty.MoveArmDegrees("both", 90, 100);
+      misty.MoveHeadPosition(-5, 0, 0, 100);
       misty.PlayAudio("Ifoundchair.mp3");
+ 
+      //misty haults operations
       misty.Stop();
       misty.Pause(3000);
-      misty.MoveHeadPosition(0, 0, 0, 100);
-      
+      misty.MoveHeadPosition(0, 0, 0, 100);//reset head and arm positions
       misty.MoveArmDegrees("both", 0, 100);
+
+       //unregister events so that misty doesn't continue moving/looking around 
       misty.UnregisterEvent("Hazard");
       misty.UnregisterEvent("drive_random");
       misty.UnregisterEvent("look_around");
@@ -281,7 +293,7 @@ function _object_detection(data) {
     else if (theA != "cup" && theA != "laptop" && theA != "backpack" && theA != "chair") //DEBUG displayed '' instead of "" so maybe its a char instead of string
     {
         //please move the object out of mistys view..... this will have added complexity..misty
-        //she should and will be able to detect the object, if it isn't the one being search for
+        //she should and will be able to detect the object, if it isn't the one being searched for
         /*
         misty.Debug("We have not found your object of choice just yet.. remove it to continue search");
 */
