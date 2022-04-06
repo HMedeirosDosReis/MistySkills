@@ -1,5 +1,5 @@
 {
-    "Name": "DetectingObj",
+    "Name": "detectingObj",
     "UniqueId": "16eb82b0-6684-4539-a88d-628624916bd0",
     "Description": "Misty attempts to find object in an area",
     "StartupRules": [
