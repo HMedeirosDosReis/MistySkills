@@ -1,5 +1,6 @@
 //start with sound to text
 register_voice_record_complete();
+//create a pause of 1 second
 misty.Pause(1000);
 // parameters: overwriteExisting, silenceTimeout, maxSpeechLength, requireKeyPhrase, captureFile, speechRecognitionLanguage, key
 //language set to english
@@ -36,6 +37,7 @@ function register_voice_record_complete() {
     misty.AddReturnProperty("voice_record_complete_message", "SpeechRecognitionResult");
     misty.RegisterEvent("voice_record_complete_message", "VoiceRecord", 100, true);
 }
+//create a pause of 8 seconds
 misty.Pause(8000);
 
 //translate
@@ -47,18 +49,20 @@ misty.Pause(8000);
 */
 //misty.Debug(misty.Get("translate"));
 translateText(misty.Get("translate"));
-
+//function to translate the text
 function translateText(text) {
     var arguments = JSON.stringify({ 
         "q": text,
-        "source": "en",//from
-        "target": "es",//to
-        "format": "text"
+        "source": "en",//from english
+        "target": "es",//to spanish
+        "format": "text" //in text format
     })
+    //send and external request to the translation api
     misty.SendExternalRequest("POST","https://translation.googleapis.com/language/translate/v2?key="+_params.APIKEY_GoogleTranslate,null,null,arguments,false,false,null,"application/json","_translatedData");
     //misty.Debug(JSON.stringify(data));
 }
 
+//after getting the translation we use store the result in variables so that later we  can use the text to speach function
 function _translatedData(data)
 {
     let response = JSON.parse(data.Result.ResponseObject.Data);
