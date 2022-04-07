@@ -22,18 +22,20 @@ misty.Set("wordAcc1", "", false);
 misty.Set("wordAcc2", "", false);
 misty.Set("wordAcc3","",false);
 misty.Set("TimeDown", 0, false);
+misty.Set("mistySecondR1", "", false);
+misty.Set("mistySecondR2", "", false);
 //Play some audio from misty before it records audio to prompt robot/user to sstart conversation
 //code here
 ///
-speakTheText("Hey there. I'm misty");
+speakTheText("Hey there. I'm misty");//REPLACE THIS WITH AN AUDIO FILE FFS
 misty.Pause(2000);
-misty.MoveArmDegrees("both", -90, 0, 50);
-misty.MoveHead(-5, 5, 0, 0, 0);
+misty.MoveArmDegrees("both", -90, 0, 90);
+misty.MoveHead(-5, 5, 0, 0, 10);
 Start_The_Convo();
 misty.Pause(1000);
 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
 //Start_The_Convo();
-
+//SOMETHING IS NOT RIGHT HERE...HALF THE TIME THIS IS RAN AND NOISE ISNT INPUTTED IT LAGS AND IS STUCK IN THE API IT SEEMS LIKe
 // Triggers when Misty finishes capturing a speech recording
 function _Convo(data) 
 {
@@ -105,6 +107,8 @@ function _Convo(data)
 
 function _MainConversation()
 {
+    misty.MoveArmDegrees("both", 0, 0, 90);
+    misty.MoveHead(0, 0, 0, 0, 5);
     var random_choice = Math.floor(Math.random() * 3);
     misty.UnregisterEvent("Convo");
     misty.Debug("the current accuracy of words1 is..." + misty.Get("wordAcc1"));
@@ -124,6 +128,9 @@ function _MainConversation()
                 misty.Set("MistyExpects1", "I am great", false );
                 misty.Set("MistyExpects2", "Not too good", false);
                 misty.Set("MQU", "I didn't understand what you said, How about you", false);
+
+                misty.Set("mistySecondR1", "Good for you. Goodbye");
+                misty.Set("mistySecondR2", "I am sorry, I am just a robot, I can't help you with that", false);
                 speakTheText("I am fine, how about yourself");
                 //get response from user/robot
                 misty.Pause(4000);
@@ -133,51 +140,7 @@ function _MainConversation()
                // misty.Pause(7500);//may not need this...in the function loopconversation
                // misty.UnregisterEvent("Convo2");
                // newResponse = data.AdditionalResults[4].toString;
-               misty.Pause(7500);//may not need this...in the function loopconversation
-               // misty.UnregisterEvent("Convo2");
-               misty.Pause(misty.Get("TimeDown"));
-               misty.Debug("TimeDown clock = (WE SHOULDNT BE HERE) " + misty.Get("TimeDown"));
-                wordAcc1 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects1"));
-                wordAcc2 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects2"));
-                misty.Debug("word acc 1 value = " + wordAcc1 + " |word acc 2 value = " + wordAcc2);
-                if(wordAcc1 >= 65.0)
-                {   
-                    //THESE NEED TO ALSO HAVE WORD CONFIDENCE 
-                    //  Start_The_Convo2();
-                    speakTheText("Good for you, Goodbye"); //Since this is an incredibly  basic conversation we will stop here
-                    misty.Pause(5000);
-                    misty.ChangeLED(255, 0, 0); //display red led for stopping everything
-                    misty.UnregisterEvent("Convo2");
-                    misty.UnregisterEvent("Convo");
-                    misty.UnregisterAllEvents();
-                    //will use this same function in every continueing conversation so it will reset itself
-
-                   // ending the conversation here for now but can add even more later
-                 }
-                 else if(wordAcc2 >= 65.0)
-                 {
-                
-                     speakTheText("I am sorry, I am just a robot, I can't help you with that");
-                     misty.Pause(7000);
-                     misty.ChangeLED(255, 0, 0); //display red led for stopping everything
-                     misty.UnregisterEvent("Convo2");
-                     misty.UnregisterEvent("Convo");
-                     misty.UnregisterAllEvents();
-                     //will use this same function in
-                 }
-                 //may not need 3rd conditional -- since there are only 2 responses accepted for any given converstation
-                 /*
-                else if (wordAcc1 < 70 && wordAcc2 < 70)
-                {
-                    
-                    speakTheText("I didn't understand what you said, I said how about YOU");
-                    misty.Pause(7000);
-                    Start_The_Convo2();
-                    misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
-                    misty.Pause(8000);
-
-                }
-                */
+                misty.Pause(7500);//may not need this...in the function loopconversation
                 break;
             case 1:
             //misty plays audiofile 2
@@ -188,39 +151,15 @@ function _MainConversation()
                 misty.Set("MistyExpects1", "You are funny Misty", false );
                 misty.Set("MistyExpects2", "You are not candy Misty", false);
                 misty.Set("MQU", "I didn't hear you. Speak up", false);
+
+                misty.Set("mistySecondR1", "If you need a ride to school remember I can tranform into a roadbot", false);
+                misty.Set("mistySecondR2", "They say you are what you eat. I am robot ten candy", false);
                 //get response from user/robot
                 Start_The_Convo2();
                 misty.Pause(1000);
                 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
                 misty.Pause(7500);//may not need this...in the function loopconversation
-                // misty.UnregisterEvent("Convo2");
-                // newResponse = data.AdditionalResults[4].toString;
-
-                //misty.Pause(9500);//may not need this...in the function loopconversation
-                // misty.UnregisterEvent("Convo2");
-                misty.Pause(misty.Get("TimeDown"));
-                misty.Debug("TimeDown clock (WE ARRIVED EARLY)= " + misty.Get("TimeDown"));
-                wordAcc1 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects1"));
-                wordAcc2 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects2"));
-
-                misty.Debug("word acc 1 value = .." + wordAcc1 + " |word acc 2 value = " + wordAcc2);
-                if(wordAcc1 > 65)
-                {
-                    speakTheText("If you need a ride to school remember I can tranform into a roadbot");
-                    misty.ChangeLED(255, 0, 0);
-                    misty.Pause(7500);
-                    misty.UnregisterEvent("Convo2");
-                    misty.UnregisterEvent("Convo");
-                }
-                else if(wordAcc2 > 65)
-                {
-                    speakTheText("They say you are what you eat. I am robot ten candy");
-                    misty.ChangeLED(255, 0, 0);
-                    misty.Pause(6500);
-                    misty.UnregisterEvent("Convo2");
-                    misty.UnregisterEvent("Convo");
-                    misty.UnregisterAllEvents();
-                }
+               
                 break;
             case 2:
                  //misty plays audiofile 3
@@ -237,30 +176,7 @@ function _MainConversation()
                 misty.Pause(1000);
                 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
                 misty.Pause(8000);//may not need this...in the function loopconversation
-                // misty.UnregisterEvent("Convo2");
-                misty.Pause(misty.Get("TimeDown"));
-                misty.Debug("TimeDown clock (WE GOT HERE TOO EARLY)= " + misty.Get("TimeDown"));
-                // newResponse = data.AdditionalResults[4].toString;
-                wordAcc1 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects1"));
-                wordAcc2 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects2"));
-
-                if(wordAcc1 > 65)
-                {
-                    speakTheText("You should be. I don't get paid to listen to you");
-                    misty.ChangeLED(255, 0, 0);
-                    misty.Pause(7500);
-                    misty.UnregisterEvent("Convo2");
-                    misty.UnregisterEvent("Convo");
-                }
-                else if(wordAcc2 > 65)
-                {
-                    speakTheText("I'll never forget the first time we met. But I'll keep trying");
-                    misty.ChangeLED(255, 0, 0);
-                    misty.Pause(8000);
-                    misty.UnregisterEvent("Convo2");
-                    misty.UnregisterEvent("Convo");
-                    misty.UnregisterAllEvents();
-                }
+               
             break;
         }
      }
@@ -292,10 +208,43 @@ function _MainConversation()
      }
 }
 
-function _IsReady()
+//misty will respond to the second utterance she hears
+function _IsReady(textToSay1, textToSay2)
 {
+    misty.UnregisterEvent("Convo2");
+    wordAcc1 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects1"));
+    wordAcc2 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects2"));
+    misty.Debug("word acc 1 value = " + wordAcc1 + " |word acc 2 value = " + wordAcc2);
+    if(wordAcc1 >= 65.0)
+    {   
+        //THESE NEED TO ALSO HAVE WORD CONFIDENCE 
+        //  Start_The_Convo2();
+        speakTheText(textToSay1); //Since this is an incredibly  basic conversation we will stop here
+        misty.Pause(5000);
+        misty.ChangeLED(255, 0, 0); //display red led for stopping everything
+        misty.UnregisterEvent("Convo2");
+        misty.UnregisterEvent("Convo");
+        misty.UnregisterAllEvents();
+        //will use this same function in every continueing conversation so it will reset itself
 
+       // ending the conversation here for now but can add even more later
+     }
+     else if(wordAcc2 >= 65.0)
+     {
+    
+         speakTheText(textToSay2);
+         misty.Pause(7000);
+         misty.ChangeLED(255, 0, 0); //display red led for stopping everything
+         misty.UnregisterEvent("Convo2");
+         misty.UnregisterEvent("Convo");
+         misty.UnregisterAllEvents();
+         //will use this same function in
+     }
 }
+    
+
+
+
 function _Convo2(data)
 {
     //store the results from the new response...misty and return it as a string
@@ -309,24 +258,10 @@ function _Convo2(data)
     misty.Debug("Current percentage word 1 " + similar(misty.Get("MistyExpects1"), misty.Get("yourResponse")) + "and the word is " + misty.Get("yourResponse"));
    // misty.Debug("Current percentage for word 2.. " + similar(misty.Get("MistyExpects2"), misty.Get("yourResponse")) + "and the word is " + misty.Get("yourResponse"));
     misty.Debug("your response right this second is --- " + misty.Get("yourResponse"));
-     //misty.Pause(7000);
-  //   addIt = 7500;
-  //   current = misty.Get("TimeDown");
-  //   misty.Set("TimeDown", current + addIT, false);
-  //   misty.Pause(3000);
+
     _LoopConversation(misty.Get("MistyExpects1"), misty.Get("MistyExpects2"), misty.Get("MQU"));
-    /*
-    //may need if statement here so speech is only returned if it what is desired
-    r1 = similar(misty.Get("MistyExpects1"), misty.Get("nextResponse"));
-    r2 = similar(misty.Get("MistyExpects2"), misty.Get("nextResponse"));
-    if(r1 > 70 || r2 > 70){
-        return Speech_In_Text;
+    
 
-    }
-    return Speech_In_Text;// this might not work while running under a registered event..
-    //if it doesn't try setting and getting
-
-    */
 
 }
 
@@ -362,9 +297,10 @@ function _LoopConversation(text, text2, text3)
     else if(existingConversation1 > 70 || existingConversation2 > 70)
     {
         misty.Debug("the users response matches predifined misty question/response..continueing execution..");
-
+// -- the function to run when misty responds once more
         //kill the event once we have desired response outcome
       //  misty.Pause(2000);
+        _IsReady(misty.Get("mistySecondR1"), misty.Get("mistySecondR2"));
         misty.UnregisterEvent("Convo2");
     }
 }
