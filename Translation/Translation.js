@@ -19,7 +19,7 @@ function _voice_record_complete_message(data) {
         //debugging messages to check if it works
         misty.Debug("Info: Audio recording successful.");
         misty.Debug(filename);
-        misty.Debug("Misty Heard: " + stt_result);
+        misty.Debug("Misty Heard: " + stt_result);+
        
         misty.Set("translate",stt_result,false);
         misty.Debug("translate:"+misty.Get("translate"));
