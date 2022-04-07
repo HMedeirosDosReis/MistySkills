@@ -126,7 +126,7 @@ function _MainConversation()
                 misty.Set("MQU", "I didn't understand what you said, How about you", false);
                 speakTheText("I am fine, how about yourself");
                 //get response from user/robot
-                misty.Pause(3000);
+                misty.Pause(4000);
                 Start_The_Convo2();
                 misty.Pause(1000);
                 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
@@ -353,7 +353,7 @@ function _LoopConversation(text, text2, text3)
        // RegisterEvent()
         //misty.UnregisterEvent();
         speakTheText(text3);
-        misty.Pause(3000); // let the robot's utterance complete and allow for listening
+        misty.Pause(5000); // let the robot's utterance complete and allow for listening
         Start_The_Convo2();
         misty.Pause(1000);
         misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
