@@ -2,7 +2,7 @@
 //Most likely need to place directly in a function so that they're may be a continuous conversation
 //will be used later with the WIt API
 try {
-    misty.DeleteAudio("convo1.wav");
+    misty.DeleteAudio("tts.wav");
 } catch (e) {}
 try {
     misty.DeleteAudio("convo2.wav");
@@ -27,10 +27,12 @@ misty.Set("mistySecondR2", "", false);
 //Play some audio from misty before it records audio to prompt robot/user to sstart conversation
 //code here
 ///
+speakTheText("Please speak when you see blue light");
+misty.Pause(4000);
 speakTheText("Hey there. I'm misty");//REPLACE THIS WITH AN AUDIO FILE FFS
-misty.Pause(2000);
-misty.MoveArmDegrees("both", -90, 0, 90);
-misty.MoveHead(-5, 5, 0, 0, 10);
+misty.Pause(3000);
+misty.MoveArmDegrees("both", -90, 0, 150);
+misty.MoveHead(-5, 5, -2, 0, 10);
 Start_The_Convo();
 misty.Pause(1000);
 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
@@ -107,8 +109,8 @@ function _Convo(data)
 
 function _MainConversation()
 {
-    misty.MoveArmDegrees("both", 0, 0, 90);
-    misty.MoveHead(0, 0, 0, 0, 5);
+    misty.MoveArmDegrees("both", 0, 0, 100);
+    misty.MoveHead(0, 0, 0, 0, 50);
     var random_choice = Math.floor(Math.random() * 3);
     misty.UnregisterEvent("Convo");
     misty.Debug("the current accuracy of words1 is..." + misty.Get("wordAcc1"));
@@ -117,7 +119,7 @@ function _MainConversation()
        if(misty.Get("wordAcc1") > 70.0)
        {
            misty.UnregisterEvent("Convo");
-           misty.Debug("misty heard you say how are you misty");
+           misty.Debug("misty heard you say how are you misty.... random choice = " + random_choice);
            //misty.Pause(3000);
         switch(random_choice)
         {
@@ -135,25 +137,26 @@ function _MainConversation()
                 //get response from user/robot
                 misty.Pause(4000);
                 Start_The_Convo2();
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
                // misty.Pause(7500);//may not need this...in the function loopconversation
                // misty.UnregisterEvent("Convo2");
                // newResponse = data.AdditionalResults[4].toString;
-                misty.Pause(7500);//may not need this...in the function loopconversation
+                misty.Pause(8000);//may not need this...in the function loopconversation
                 break;
             case 1:
             //misty plays audiofile 2
                 misty.UnregisterEvent("Convo");
-                speakTheText("Nice and dandy like cotton candy");
-                misty.Pause(4000);
-                //set global variables
                 misty.Set("MistyExpects1", "You are funny Misty", false );
                 misty.Set("MistyExpects2", "You are not candy Misty", false);
                 misty.Set("MQU", "I didn't hear you. Speak up", false);
 
                 misty.Set("mistySecondR1", "If you need a ride to school remember I can tranform into a roadbot", false);
                 misty.Set("mistySecondR2", "They say you are what you eat. I am robot ten candy", false);
+                speakTheText("Nice and dandy like cotton candy");
+                misty.Pause(4000);
+                //set global variables
+
                 //get response from user/robot
                 Start_The_Convo2();
                 misty.Pause(1000);
@@ -162,15 +165,20 @@ function _MainConversation()
                
                 break;
             case 2:
-                 //misty plays audiofile 3
+                 //
+                 misty.Set("MistyExpects1", "Well sorry I asked", false );
+                 misty.Set("MistyExpects2", "Bad misty bad", false);
+                 misty.Set("MQU", "What was that. I didn't hear you", false);
+ 
+                 misty.Set("mistySecondR1", "You should be. I don't get paid to listen to you", false);
+                 misty.Set("mistySecondR2", "I'll never forget the first time we met. But I'll keep trying", false);
+ 
                 speakTheText("I was fine until you asked");
                 //more responses
                 misty.Pause(3000);
 
                 //set global variables
-                misty.Set("MistyExpects1", "Well sorry I asked", false );
-                misty.Set("MistyExpects2", "Bad misty bad", false);
-                misty.Set("MQU", "What was that. I didn't hear you", false);
+
                 //get response from user/robot
                 Start_The_Convo2();
                 misty.Pause(1000);
@@ -211,6 +219,8 @@ function _MainConversation()
 //misty will respond to the second utterance she hears
 function _IsReady(textToSay1, textToSay2)
 {
+    misty.MoveArmDegrees("both", -20, 0, 100);
+    misty.MoveHead(-30, -30, 0, 0, 50);
     misty.UnregisterEvent("Convo2");
     wordAcc1 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects1"));
     wordAcc2 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects2"));
@@ -220,8 +230,9 @@ function _IsReady(textToSay1, textToSay2)
         //THESE NEED TO ALSO HAVE WORD CONFIDENCE 
         //  Start_The_Convo2();
         speakTheText(textToSay1); //Since this is an incredibly  basic conversation we will stop here
-        misty.Pause(5000);
-        misty.ChangeLED(255, 0, 0); //display red led for stopping everything
+        misty.ChangeLED(255, 0, 0); 
+     //   misty.Pause(5000);
+       // misty.ChangeLED(255, 0, 0); //display red led for stopping everything
         misty.UnregisterEvent("Convo2");
         misty.UnregisterEvent("Convo");
         misty.UnregisterAllEvents();
@@ -233,8 +244,9 @@ function _IsReady(textToSay1, textToSay2)
      {
     
          speakTheText(textToSay2);
-         misty.Pause(7000);
-         misty.ChangeLED(255, 0, 0); //display red led for stopping everything
+         misty.ChangeLED(255, 0, 0); 
+        // misty.Pause(7000);
+        // misty.ChangeLED(255, 0, 0); //display red led for stopping everything
          misty.UnregisterEvent("Convo2");
          misty.UnregisterEvent("Convo");
          misty.UnregisterAllEvents();
@@ -290,9 +302,9 @@ function _LoopConversation(text, text2, text3)
         speakTheText(text3);
         misty.Pause(5000); // let the robot's utterance complete and allow for listening
         Start_The_Convo2();
-        misty.Pause(1000);
+        misty.Pause(2000);
         misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
-        misty.Pause(7500);
+        misty.Pause(8000);
     }
     else if(existingConversation1 > 70 || existingConversation2 > 70)
     {
@@ -365,7 +377,7 @@ function speakTheText(text) {
             "effectsProfileId": [
                 "small-bluetooth-speaker-class-device"
             ],
-            "pitch": 0.8,
+            "pitch": 0.7,
             "speakingRate": 0.85
         }
     });

@@ -19,28 +19,21 @@ misty.Set("lastHazard", "NotYet");
 misty.AddReturnProperty("Hazard", "DriveStopped");
 misty.RegisterEvent("Hazard", "HazardNotification", 1, true);
 
-start_object_detection(); //immediately start searching for the object
-
-//WILL MOST LIKELY USE THESE TO HAVE MISTY MOVE IN PREDEFINED SPACE INSTEAD OF RANDOMLY
-//NOT CURRENTLY BEING USED --REMOVE THIS COMMENT ONCE UTILIZED
-misty.Set("roamInX", 305, false);// in cm equates to around 10 feet...roam in a rectangle
-misty.Set("roamInY", 100, false);
-//maybe allow user to select the specific object misty needs to look for
-
 // ------------------------ Random Drive -------------------------------------
-//instead of completely random drives we may have her drive a certain path in timed intervals
-//this way she isn't randomly driving in an arc...path may still be random but not as much
-function _drive_random() {
+
+function _drive_random() 
+{
     misty.Debug("Random Drive -> Now Issuing a Drive Command");
-    if (Math.random() <= 0.2) {
+    if (Math.random() <= 0.2) 
+    {
         drive(0, 0);
         misty.Debug("Idle State Selected - wait 10-20 sec");
-
-        //determines when new drive command is issued
         misty.RegisterTimerEvent("drive_random", getRandomInt(10, 20) * 1000, false);
-    }
-    else {
-        switch (misty.Get("lastHazard")) {
+    } 
+    else 
+    {
+        switch (misty.Get("lastHazard")) 
+        {
             case "LEFT":
                 drive(getRandomInt(15, 30), getRandomInt(-15, 0));
                 misty.Set("lastHazard", "NotYet");
@@ -55,23 +48,27 @@ function _drive_random() {
         misty.RegisterTimerEvent("drive_random", getRandomInt(4, 9) * 1000, false);
     }
 }
-misty.RegisterTimerEvent("drive_random", 10, false);
+misty.RegisterTimerEvent("drive_random", 10, false); 
 
-function drive(lin, ang) {
-    if (!misty.Get("inCorrecetion")) {
+function drive(lin, ang) 
+{
+    if (!misty.Get("inCorrecetion")) 
+    {
         if (lin === 0 && ang === 0) misty.Stop();
         else misty.Drive(lin, ang);
     }
-    else {
+    else
+    {
         misty.Debug("Drive command ignored as Misty is in correction mode");
     }
 }
 
 // --------- Misty detects hazards - based of Time of Flight Sensors (both range and edge) and bump sensors -------
 
-function _Hazard(data) {
-    //data received from misty while she is near hazards
-
+function _Hazard(data) 
+{
+    // misty.Debug(JSON.stringify(data));
+    // misty.Debug(JSON.stringify(data.AdditionalResults));
     const dataIn = data.AdditionalResults;
 
     var triggers = [];
@@ -92,13 +89,14 @@ function _Hazard(data) {
         else if (triggers[0] == "Front center hazard") FrontCorrection();
         else if (triggers[0] == "Back left hazard") BackCorrection("LEFT");
         else if (triggers[0] == "Back right hazard") BackCorrection("RIGHT");
-        else { }
+        else {}
     }
 }
 
 // --------- Misty gets into programmed sequence of corrective action to move away from the Hazard -----
 
-function FrontCorrection() {
+function FrontCorrection() 
+{
     misty.Debug("FRONT-CORRECTION");
     misty.ChangeLED(255, 0, 0);
     misty.MoveArmDegrees("both", -80, 30);
@@ -106,55 +104,57 @@ function FrontCorrection() {
     misty.DriveTime(-20, 0, 600);
     misty.Pause(600);
     misty.DriveTime(-20, -20, 5500);
-    misty.Pause(3500)
+    misty.Pause(5500)
     misty.ChangeLED(0, 255, 0);
     misty.Set("inCorrecetion", false);
     misty.Set("inCorrecetion", false);
 }
 
-function BackCorrection(preferredDrive = "NotYet") {
+function BackCorrection(preferredDrive = "NotYet") 
+{
     misty.Debug("BACK-CORRECTION");
     misty.Set("lastHazard", preferredDrive);
     misty.ChangeLED(255, 0, 0);
-    misty.MoveArmDegrees("both", -80, 90);
+    misty.MoveArmDegrees("both", -80, 30);
     misty.Pause(2000);
-    misty.DriveTime(40, 0, 5500);
-    misty.Pause(3500)
-    misty.ChangeLED(50, 255, 50);
+    misty.DriveTime(20, 0, 5500);
+    misty.Pause(5500)
+    misty.ChangeLED(0, 255, 0);
     misty.Set("inCorrecetion", false);
     misty.Set("inCorrecetion", false);
 }
 
-function LeftCorrection() {
+function LeftCorrection() 
+{
     misty.Debug("LEFT-CORRECTION");
     misty.Set("lastHazard", "LEFT");
-    misty.ChangeLED(255, 0, 255);
-    misty.MoveArmDegrees("both", -80, 90);
+    misty.ChangeLED(255, 0, 0);
+    misty.MoveArmDegrees("both", -80, 30);
     misty.Pause(2000);
-    misty.DriveTime(-40, 0, 600);
+    misty.DriveTime(-20, 0, 600);
     misty.Pause(600);
-    misty.DriveTime(-40, -15, 5000);
+    misty.DriveTime(-20, -15, 5000);
     misty.Pause(5000);
     misty.ChangeLED(0, 255, 0);
     misty.Set("inCorrecetion", false);
     misty.Set("inCorrecetion", false);
 }
 
-function RightCorrection() {
+function RightCorrection() 
+{
     misty.Debug("RIGHT-CORRECTION");
     misty.Set("lastHazard", "RIGHT");
-    misty.ChangeLED(255, 100, 0);
-    misty.MoveArmDegrees("both", -80, 90); //signals for correction to made off of the ride side
+    misty.ChangeLED(255, 0, 0);
+    misty.MoveArmDegrees("both", -80, 30);
     misty.Pause(2000);
-    misty.DriveTime(-40, 0, 600);
+    misty.DriveTime(-20, 0, 600);
     misty.Pause(600);
-    misty.DriveTime(-40, 15, 5000);
-    misty.Pause(3000);
+    misty.DriveTime(-20, 15, 5000);
+    misty.Pause(5000);
     misty.ChangeLED(0, 255, 0);
     misty.Set("inCorrecetion", false);
     misty.Set("inCorrecetion", false);
 }
-
 //--------------------- Random Head Movements-------------------------------------------------
 
 function _look_around() {
@@ -180,7 +180,7 @@ function start_object_detection() {
     // Argument 2: Event Name (do not change this) 
     // Argument 3: Debounce in milliseconds (least time between updates)
     // Argument 4: Live forever
-    misty.RegisterEvent("object_detection", 2000, false); //search for the object every few seconds until it is found
+    misty.RegisterEvent("object_detection", 4000, false); //search for the object every few seconds until it is found
 
     // Argument 1: Minimum confidence required (float) 0.0 to 1.0 
     // Argument 2: ModelId (int) 0 - 3 
@@ -211,7 +211,7 @@ function _object_detection(data) {
        
         //misty stops all operations
         misty.Stop();
-        misty.Pause(3000);
+      //  misty.Pause(3000);
         misty.MoveArmDegrees("both", 0, 100); //reset positions to normal.
         misty.MoveHeadPosition(0, 0, 0, 100);
 
@@ -234,7 +234,7 @@ function _object_detection(data) {
 
         //misty stops all operations
         misty.Stop();
-        misty.Pause(3000);
+      //  misty.Pause(3000);
         misty.MoveHeadPosition(0, 0, 0, 100); //reset head and arm position to normal
         misty.MoveArmDegrees("both", 0, 100);
         misty.UnregisterEvent("Hazard");
@@ -254,7 +254,7 @@ function _object_detection(data) {
 
         //misty halts all operations
         misty.Stop();
-        misty.Pause(3000);
+       // misty.Pause(3000);
         misty.MoveHeadPosition(0, 0, 0, 100);//reset head and arm positions
         misty.MoveArmDegrees("both", 0, 100);
 
@@ -278,7 +278,7 @@ function _object_detection(data) {
  
       //misty haults operations
       misty.Stop();
-      misty.Pause(3000);
+     // misty.Pause(3000);
       misty.MoveHeadPosition(0, 0, 0, 100);//reset head and arm positions
       misty.MoveArmDegrees("both", 0, 100);
 
