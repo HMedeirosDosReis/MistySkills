@@ -1,0 +1,19 @@
+{
+    "Name": "TicTacToe",
+    "UniqueId": "1faec78a-9112-480e-ab60-40e36332e13f",
+    "Description": "Misty plays tic tace with another bot",
+    "StartupRules": [
+      "Manual",
+      "Robot"
+    ],
+    "Language": "javascript",
+    "BroadcastMode": "verbose",
+    "TimeoutInSeconds": 600,
+    "CleanupOnCancel": true,
+    "WriteToLog": false,
+    "Parameters": {
+        "int": 10,
+        "double": 20.5,
+        "string": "twenty"
+    }
+  }
