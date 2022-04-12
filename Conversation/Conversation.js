@@ -125,7 +125,8 @@ function _MainConversation()
         {
             case 0:
                 misty.UnregisterEvent("Convo");
-
+                misty.MoveHeadDegrees(-30, -40, -20, 80);
+                misty.MoveArmDegrees("right", -90, 100);
                 //set global variables
                 misty.Set("MistyExpects1", "I am great", false );
                 misty.Set("MistyExpects2", "Not too good", false);
@@ -143,9 +144,13 @@ function _MainConversation()
                // misty.UnregisterEvent("Convo2");
                // newResponse = data.AdditionalResults[4].toString;
                 misty.Pause(8000);//may not need this...in the function loopconversation
+
                 break;
             case 1:
-            //misty plays audiofile 2
+                misty.UnregisterEvent("Convo");
+                misty.MoveHeadDegrees(-30, -40, -20, 80);
+                misty.MoveArmDegrees("right", -90, 100);
+
                 misty.UnregisterEvent("Convo");
                 misty.Set("MistyExpects1", "You are funny Misty", false );
                 misty.Set("MistyExpects2", "You are not candy Misty", false);
@@ -165,7 +170,11 @@ function _MainConversation()
                
                 break;
             case 2:
-                 //
+                 //misty shakes her head lol I WANT HER TO SHAKE HER HEAD 
+                 misty.UnregisterEvent("Convo");
+                 misty.MoveHeadDegrees(-30, -40, -20, 80);
+                 misty.MoveArmDegrees("right", -90, 100);
+
                  misty.Set("MistyExpects1", "Well sorry I asked", false );
                  misty.Set("MistyExpects2", "Bad misty bad", false);
                  misty.Set("MQU", "What was that. I didn't hear you", false);
@@ -219,19 +228,26 @@ function _MainConversation()
 //misty will respond to the second utterance she hears
 function _IsReady(textToSay1, textToSay2)
 {
-    misty.MoveArmDegrees("both", -20, 0, 100);
-    misty.MoveHead(-30, -30, 0, 0, 50);
+  //  misty.MoveArmDegrees("both", -20, 0, 100);
+  //  misty.MoveHead(-30, -30, 0, 0, 50);
     misty.UnregisterEvent("Convo2");
     wordAcc1 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects1"));
     wordAcc2 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects2"));
     misty.Debug("word acc 1 value = " + wordAcc1 + " |word acc 2 value = " + wordAcc2);
     if(wordAcc1 >= 65.0)
     {   
+        //misty reacts to second utterance by moving head and arms
+        misty.MoveHeadDegrees(-30, 40, 20, 80);
+        misty.MoveArmDegrees("right", 90, 100);
+        misty.MoveArmDegrees("left", -90, 100);
         //THESE NEED TO ALSO HAVE WORD CONFIDENCE 
         //  Start_The_Convo2();
         speakTheText(textToSay1); //Since this is an incredibly  basic conversation we will stop here
         misty.ChangeLED(255, 0, 0); 
-     //   misty.Pause(5000);
+        misty.Pause(5000);
+        misty.UnregisterEvent("Convo");
+        misty.MoveHeadDegrees(0, 0, 0, 80);
+        misty.MoveArmDegrees("both", -90, 100);
        // misty.ChangeLED(255, 0, 0); //display red led for stopping everything
         misty.UnregisterEvent("Convo2");
         misty.UnregisterEvent("Convo");
@@ -242,10 +258,14 @@ function _IsReady(textToSay1, textToSay2)
      }
      else if(wordAcc2 >= 65.0)
      {
-    
+        misty.MoveHeadDegrees(-30, 40, 20, 80);
+        misty.MoveArmDegrees("right", 90, 100);
+        misty.MoveArmDegrees("left", -90, 100);
          speakTheText(textToSay2);
          misty.ChangeLED(255, 0, 0); 
-        // misty.Pause(7000);
+         misty.Pause(5000);
+        misty.MoveHeadDegrees(0, 0, 0, 80);
+        misty.MoveArmDegrees("both", -90, 100);
         // misty.ChangeLED(255, 0, 0); //display red led for stopping everything
          misty.UnregisterEvent("Convo2");
          misty.UnregisterEvent("Convo");

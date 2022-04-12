@@ -1,15 +1,18 @@
 //This is a SHELL FOR MISTY TO PLAY TIC TAC TOE WITH AI/ANOTHER MISTY
-misty.DisplayImage("BlankBoard.png", "MyBoard");
-misty.DisplayImage("Xtoe.png", "XtoeLayer1");
-misty.DisplayImage("Xtoe2.png", "XtoeLayer2");
-misty.DisplayImage("Xtoe3.png", "XtoeLayer3");
-misty.DisplayImage("Xtoe4.png", "XtoeLayer4");
-misty.DisplayImage("Xtoe5.png", "XtoeLayer5");
-misty.DisplayImage("Xtoe6.png", "XtoeLayer6");
-misty.DisplayImage("Xtoe7.png", "XtoeLayer7");
-misty.DisplayImage("Xtoe8.png", "XtoeLayer8");
-misty.DisplayImage("Xtoe9.png", "XtoeLayer9");
+misty.Set("StateOfGame",["X","X", "X", "X", "X", "X", "X", "X", "X"], false);
 
+testit();
+misty.DisplayLayerImage("BlankBoard2.png", "MyBoard");
+misty.DisplayLayerImage("Xtoe.png", "XtoeLayer1");
+misty.DisplayLayerImage("Xtoe2.png", "XtoeLayer2");
+misty.DisplayLayerImage("Xtoe3.png", "XtoeLayer3");
+misty.DisplayLayerImage("Xtoe4.png", "XtoeLayer4");
+misty.DisplayLayerImage("Xtoe5.png", "XtoeLayer5");
+misty.DisplayLayerImage("Xtoe6.png", "XtoeLayer6");
+misty.DisplayLayerImage("Xtoe7.png", "XtoeLayer7");
+misty.DisplayLayerImage("Xtoe8.png", "XtoeLayer8");
+misty.DisplayLayerImage("Xtoe9.png", "XtoeLayer9");
+/*
 misty.DisplayImage("Otoe.png", "OtoeLayer1");
 misty.DisplayImage("Otoe2.png", "OtoeLayer2");
 misty.DisplayImage("Otoe3.png", "OtoeLayer3");
@@ -20,7 +23,7 @@ misty.DisplayImage("Otoe7.png", "OtoeLayer7");
 misty.DisplayImage("Otoe8.png", "OtoeLayer8");
 misty.DisplayImage("Otoe9.png", "OtoeLayer9");
 
-
+*/
 
 //DEFAULT OPACITIES SET TO 0 BECAUSE THE BOARD IS BLANK!
 //THESE WILL BE SET TO ONE AFTER THE AI/ROBOT UPDATES SELECTION IN DASHBOARD
@@ -30,39 +33,83 @@ misty.DisplayImage("Otoe9.png", "OtoeLayer9");
 //bool visible, double opacity, int width, int height, string stretch, bool placeontop
 //int rotation, string horizontalAlignment, string verticalAlignment, int prePausems,
 //int postPauseMS);
-
+misty.Debug("we are stepping through 1");
 //going to make each picture an even square for the board
-misty.SetImageDisplaySettings("MyBoard", false, false, true, 1.0, 480, 272, none, true, 0, "Center", "Center", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer1", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Top", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer2", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Top", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer3", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Top", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer4", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Center", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer5", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Center", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer6", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Center", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer7", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Bottom", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer8", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Bottom", 0,0 );
-
-misty.SetImageDisplaySettings("XtoeLayer9", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("MyBoard", null, false, true, 1.0,480,272, "UniformToFill",true,  0, "Center", "Center", 0,0 );
+misty.Debug("we are stepping through 2");
+//misty.Pause(5000);
 
 
+
+misty.SetImageDisplaySettings("XtoeLayer1", false, false, true, 1.0, 110, 110, "Uniform", true, 0, "Left", "Top", 0,0 );
+
+
+misty.SetImageDisplaySettings("XtoeLayer2", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Top", 0,0 );
+
+misty.SetImageDisplaySettings("XtoeLayer3", false, false, true, 1.0, 110, 110, "Uniform", true, 0, "Right", "Top", 0,0 );
+
+misty.SetImageDisplaySettings("XtoeLayer4", false, false, true, 1.0, 110, 75, "Uniform", true, 0, "Left", "Center", 0,0 );
+
+misty.SetImageDisplaySettings("XtoeLayer5", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Center", 0,0 );
+
+misty.SetImageDisplaySettings("XtoeLayer6", false, false, true, 1.0, 120, 75, "Uniform", true, 0, "Right", "Center", 0,0 );
+
+misty.SetImageDisplaySettings("XtoeLayer7", false, false, true, 1.0, 110, 85, "Uniform", true, 0, "Left", "Bottom", 0,0 );
+
+misty.SetImageDisplaySettings("XtoeLayer8", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Bottom", 0,0 );
+
+misty.SetImageDisplaySettings("XtoeLayer9", false, false, true, 1.0, 110, 85, "Uniform", true, 0, "Right", "Bottom", 0,0 );
+
+misty.Pause(5000);
+
+misty.SetImageDisplaySettings("XtoeLayer1", null, true);
+misty.Debug("we are stepping through 4");
+misty.Pause(2000);
+
+misty.SetImageDisplaySettings("XtoeLayer2", null, true);
+misty.Debug("we are stepping through 5");
+misty.Pause(2000);
+
+misty.SetImageDisplaySettings("XtoeLayer3", null, true);
+misty.Debug("we are stepping through 6");
+misty.Pause(2000);
+
+misty.SetImageDisplaySettings("XtoeLayer4", null, true);
+misty.Debug("we are stepping through 7");
+misty.Pause(2000);
+
+misty.SetImageDisplaySettings("XtoeLayer5", null, true);
+misty.Debug("we are stepping through 8");
+misty.Pause(2000);
+
+misty.SetImageDisplaySettings("XtoeLayer6", null, true);
+misty.Debug("we are stepping through 9");
+misty.Pause(2000);
+
+misty.SetImageDisplaySettings("XtoeLayer7", null, true);
+misty.Debug("we are stepping through 10");
+misty.Pause(2000);
+
+misty.SetImageDisplaySettings("XtoeLayer8", null, true);
+misty.Debug("we are stepping through 3");
+misty.Pause(2000);
+
+misty.SetImageDisplaySettings("XtoeLayer9", null, true);
+misty.Debug("we are stepping through 3");
+misty.Pause(2000);
+//delete the photo
+misty.SetImageDisplaySettings("MyBoard", null, true);
+misty.Debug("we are stepping through delete the whole board");
 //the Os will be visible as well after I test that all Xs are correctly formatted and fitted on the board
-misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 130, 130, none, true, 0, "Left", "Top", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer2", false, false, false, 1.0, 130, 130, none, true, 0, "Center", "Top", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer3", false, false, false, 1.0, 130, 130, none, true, 0, "Right", "Top", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer4", false, false, false, 1.0, 130, 130, none, true, 0, "Left", "Center", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer5", false, false, false, 1.0, 130, 130, none, true, 0, "Center", "Center", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer6", false, false, false, 1.0, 130, 130, none, true, 0, "Right", "Center", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer7", false, false, false, 1.0, 130, 130, none, true, 0, "Left", "Bottom", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 130, 130, none, true, 0, "Center", "Bottom", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 130, 130, none, true, 0, "Right", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Left", "Top", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer2", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Top", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer3", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Right", "Top", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer4", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Left", "Center", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer5", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Center", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer6", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Right", "Center", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer7", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Left", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Right", "Bottom", 0,0 );
 //PIXEL VALUES WILL BE ADJUSTED ONCE I CAN SEE HOW THEY APPEAR ON THE BOARD -MAY NEED TO UPDATE BOARD SO EVERYTHING LOOKS EVEN
 
 //may not need 9 separte pictures of the same file...misty
@@ -80,7 +127,6 @@ misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 130, 130, 
 //misty.Pause(4000);
 
 //probably going to roll with global variables instead of defining from within the function
-misty.Set("StateOfGame",["", "", "", "", "", "", "", "", ""], false);
 misty.Set("CurrentPlayer", "player1");
 misty.Set("ActiveGame", true, false);
 misty.Set("Player1_Won", "", false); //set to Player1Won or Player2Wond depending on victor
@@ -99,6 +145,48 @@ misty.Set("WinningCondition",
 ], false); //save the winning combinations
 
 misty.Set("PlayerSelected", "", false);
+
+function testit()
+{
+i = 0;
+ var CurrentState = misty.Get("StateOfGame");
+let fullBoardNotDraw = false;
+/*
+while(i < 10)
+{
+    misty.Debug("WHILE LOOPS WORK CAN YOU BELIEVE THAT");
+i++;
+}
+*/
+
+CurrentState = ["O","O","O","O","O","O", "O", "O","O"];
+CurrentState[2] = "X";
+CurrentState[4] = "X";
+
+misty.Set("StateOfGame", CurrentState, false);
+misty.Debug("Cur state = " + CurrentState[2] + " " + CurrentState[4]);
+//var testarray = 
+misty.Pause(2000);
+misty.Debug("The Current array value 1 " + CurrentState[0] + " | index = " + i);
+
+for(i = 0; i <=8; i++)
+{
+    //TESTING PURPOSES PRINT OUT THE CURRENT VALUES OF THE GAME STATE ARRAY
+misty.Debug("The Current array values 1-9 " + CurrentState[i+2] + " | index = " + i);
+// INDEX 0 ACTUALLY = 2, INDEX 2 =4 ... MAIN WAY TO ACCESS THE ARRAY FOR NOW
+//WILL HAVE TO MAKE SURE ITS WELL DOCUMENTED...UPDATE ANY CODE TO ACCOMODATE FOR COMMAS ,
+}
+
+
+}
+
+
+
+//BLANKING EVERYTHING OUT TO MAKE SURE THE PHOTOS DISPLAY CURRECTLY FIRST
+/*
+
+
+
 
 
 function Start_Tic_Tac_Toe()
@@ -230,7 +318,10 @@ function GameStart(){
         //EITHER THAT OR I HAVE TO UPLOAD 9 AUDIO FILES
         //AND SET UP 9 IF ELSE STATEMENTS BLEH
         //playaudio()
+        Computer1Move();
+
         chosentile1 = Computer1Move();
+        misty.Debug("The tile currently selected is " + chosentile1);
         //speakit = "I select tile " + chosentile.toString();
         //speakthetext(speakit);
         misty.Pause(3000);
@@ -311,6 +402,7 @@ function Computer1Move()
             ispicked = false;
             currBoard[move] = "X";
             misty.Set("StateOfGame", currBoard, false ); //update board state with computer 1 selection
+            return move;
         }
         else if(currBoard[move] != "" )
         {
@@ -341,3 +433,4 @@ function Computer1Move()
 function Computer2Move(){
 
 }
+*/

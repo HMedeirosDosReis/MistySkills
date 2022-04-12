@@ -254,31 +254,24 @@ function _object_detection(data) {
         misty.UnregisterEvent("drive_random");
   
         //misty reacts to finding her suitcase
-        misty.ChangeLED(10, 12, 150);
-        misty.MoveHeadPosition(-5, 0, 0, 100);
-        misty.MoveArmDegrees("both", 90, 100);
-        misty.PlayAudio("Ifoundsuitcase.mp3");
+        misty.ChangeLED(255, 0, 0);
+        misty.MoveHeadDegrees(-35, -40, -10, 90);
+        misty.MoveArmDegrees("both", -90, 100);
+        misty.PlayAudio("Ifoundsuitcase.mp3", 80);
         misty.Debug("we ARE HERE IN THE SUITCAAASSEEE");
-                _GetAudioList();
         //misty halts all operations
         misty.Stop();
         misty.UnregisterEvent("object_detection");
         misty.UnregisterAllEvents();
-       // misty.Pause(2000);
-                misty.ChangeLED(10, 12, 150);
-        misty.MoveHeadPosition(-5, 0, 0, 100);
+        misty.Pause(4000);
+        misty.MoveHeadDegrees(0, 0, 0, 80);
         misty.MoveArmDegrees("both", 90, 100);
-        misty.PlayAudio("Ifoundsuitcase.mp3");
-//misty.drive(1500);
         misty.Debug("we are HERE SUITCAse");
         misty.Pause(3000);
-        misty.MoveHeadPosition(0, 0, 0, 100);//reset head and arm positions
-        misty.MoveArmDegrees("both", 0, 100);
-
         //unregister events so that misty doesn't continue moving/looking around 
 
     }
-    else if (theA == "chair" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60 ) { 
+    else if (theA == "cChair" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60 ) { 
       misty.Debug("we found a chair once again man.......");
     //  misty.Stop();
       misty.UnregisterEvent("look_around");//stop misty from looking around immediately
@@ -286,22 +279,19 @@ function _object_detection(data) {
       misty.UnregisterEvent("drive_random");
       //misty reacts to finding a chair
       misty.ChangeLED(255, 0, 0);//red stop
-      misty.MoveArmDegrees("both", -90, 50);
-      misty.MoveHeadPosition(-5, 5, 0, 50);
-      misty.PlayAudio("Ifoundchair.mp3", 100);
-
-      _GetAudioList();
+      misty.MoveHeadDegrees(-35, -40, -10, 90);
+      misty.MoveArmDegrees("both", -90, 100);
+      misty.PlayAudio("Ifoundchair.mp3", 70);
  
       misty.Debug("we are here now CHAIR");
-      misty.UnregisterEvent("object_detection");
-      misty.UnregisterAllEvents();
+
       //misty haults operations
       misty.Stop();
-     // misty.Pause(1000);
-    //  misty.Drive(2000);
-
-      misty.MoveHeadPosition(0, 0, 0, 50);//reset head and arm positions
-      misty.MoveArmDegrees("both", 0, 50);
+      misty.UnregisterEvent("object_detection");
+      misty.UnregisterAllEvents();
+      misty.Pause(4000);
+      misty.MoveHeadDegrees(0, 0, 0, 80);
+      misty.MoveArmDegrees("both", 90, 100);
 
        //unregister events so that misty doesn't continue moving/looking around 
   }
@@ -402,27 +392,3 @@ misty.RegisterEvent("object_detection", "ObjectDetection", 500, true); //misty w
 // teddy bear
 // hair drier
 // toothbrush
-//misty.Debug("starting skill helloworld_playaudio");
-
-// Issue command to fetch list of audio clips
-//misty.GetAudioList();
-
-// Callback to handle data returned by GetAudioList()
-function _GetAudioList(data) {
-    // Check if data was received
-    if (data) {
-        // Capture the array of files
-        let audioArr = data.Result;
-
-        // Generate a random number and use it to choose a filename at 
-        // random from the list
-        let randNum = Math.floor(Math.random() * audioArr.length);
-        let randSound = audioArr[randNum].Name;
-        // Print the name of the file
-        misty.Debug(randSound);
-
-        // Issue command to play the audio clip
-        misty.PlayAudio(randSound);
-        misty.PlayAudio("Ifoundchair.mp3",100);
-    }
-}
