@@ -238,8 +238,8 @@ function HandleTheResults()
 
     //let roundDraw = !CurrentState.includes("");
     //just gonna hard code if includes doesn't work
-    if(CurrentState[0] != "" && CurrentState[1] != "" && CurrentState[2] != "" && CurrentState[3] != "" &&
-    CurrentState[4] != "" && CurrentState[5] != "" && CurrentState[6] != "" && CurrentState[7] != "" && CurrentState[8] != ""
+    if(CurrentState[0] != "" && CurrentState[2] != "" && CurrentState[4] != "" && CurrentState[6] != "" &&
+    CurrentState[8] != "" && CurrentState[10] != "" && CurrentState[12] != "" && CurrentState[14] != "" && CurrentState[16] != ""
     && fullBoardNotDraw == false)
     {
         misty.PlayAudio("Draw.mp3", 90);
