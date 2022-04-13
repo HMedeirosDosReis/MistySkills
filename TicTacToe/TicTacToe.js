@@ -76,7 +76,7 @@ misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 110, 85, "
 
 //may not need 9 separte pictures of the same file...misty
 
-
+GameStart();
 
 //WE WILL EITER DIPLAY ALL IMAGES SIMULTANEOUSLY OR SIMPLY CALL ONE AT A TIME
 //WILL PROBABLY PLAY ONE AT A TIME BUT THIS WILL DO FOR NOW
