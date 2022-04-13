@@ -99,6 +99,7 @@ misty.Set("Move", "", false);
 
 misty.Set("WinningCondition",   
 [
+    /* //what these values actually represent
     [0,1,2],
     [3,4,5],
     [6,7,8],
@@ -107,6 +108,16 @@ misty.Set("WinningCondition",
     [2,5,8],
     [0,4,8],
     [2,4,6]
+    */
+    //same values but to work with the string array it needs to be like this
+    [0,2,4],
+    [6,8,10],
+    [12,14,16],
+    [0,6,12],
+    [2,8,14],
+    [4,10,16],
+    [0,8,16],
+    [4,8,12]
 ], false); //save the winning combinations
 
 misty.Set("PlayerSelected", "", false);
@@ -160,16 +171,27 @@ function HandleTheResults()
     let WC = misty.Get("WinningCondition");
     let CurrentState = misty.Get("StateOfGame");
     let fullBoardNotDraw = false;
-    for(let i = 0; i <=8; i++)
+    for(let i = 0; i <=16; i++)
     {
         //TESTING PURPOSES PRINT OUT THE CURRENT VALUES OF THE GAME STATE ARRAY
     misty.Debug("The Current array values 1-9" + CurrentState[i] + " | ");
     }
-    for(let i = 0; i <=7; i++){
+    //the multi dim array may even need ,s account for so if it doesn't use
+    //for(let i = 0; i <=7; i++)
+    //else use the following
+    for(let i = 0; i <=14; i+2)
+    {
         const winCondition = WC[i];
-        let a = CurrentState[WC[0]];
-        let b = CurrentState[WC[1]];
-        let c = CurrentState[WC[2]];
+        misty.Debug("wincstatement executing.. " + winCondition); 
+        //in the event that ,s have to be accounted for when reading in contents of array
+        /*
+        let a = CurrentState[winCondition[0]];
+        let b = CurrentState[winCondition[1]];
+        let c = CurrentState[winCondition[2]];
+        */
+        let a = CurrentState[winCondition[0]];
+        let b = CurrentState[winCondition[2]];
+        let c = CurrentState[winCondition[4]];
         if(a === '' || b === '' || c === '')
         {
             continue;
