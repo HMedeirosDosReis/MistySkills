@@ -1,0 +1,19 @@
+{
+  "Name": "SecurityCamera",
+  "UniqueId": "db9742f5-912e-4a1a-a014-94fd65adde82",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "verbose",
+  "TimeoutInSeconds": 600,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
