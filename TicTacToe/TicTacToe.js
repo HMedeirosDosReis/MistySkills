@@ -1,7 +1,7 @@
 //This is a SHELL FOR MISTY TO PLAY TIC TAC TOE WITH AI/ANOTHER MISTY
-misty.Set("StateOfGame",["X","X", "X", "X", "X", "X", "X", "X", "X"], false);
+misty.Set("StateOfGame",["","", "", "", "", "", "", "", ""], false);
 
-testit();
+//testit();
 misty.DisplayLayerImage("BlankBoard2.png", "MyBoard");
 misty.DisplayLayerImage("Xtoe.png", "XtoeLayer1");
 misty.DisplayLayerImage("Xtoe2.png", "XtoeLayer2");
@@ -12,7 +12,7 @@ misty.DisplayLayerImage("Xtoe6.png", "XtoeLayer6");
 misty.DisplayLayerImage("Xtoe7.png", "XtoeLayer7");
 misty.DisplayLayerImage("Xtoe8.png", "XtoeLayer8");
 misty.DisplayLayerImage("Xtoe9.png", "XtoeLayer9");
-/*
+
 misty.DisplayImage("Otoe.png", "OtoeLayer1");
 misty.DisplayImage("Otoe2.png", "OtoeLayer2");
 misty.DisplayImage("Otoe3.png", "OtoeLayer3");
@@ -23,7 +23,7 @@ misty.DisplayImage("Otoe7.png", "OtoeLayer7");
 misty.DisplayImage("Otoe8.png", "OtoeLayer8");
 misty.DisplayImage("Otoe9.png", "OtoeLayer9");
 
-*/
+
 
 //DEFAULT OPACITIES SET TO 0 BECAUSE THE BOARD IS BLANK!
 //THESE WILL BE SET TO ONE AFTER THE AI/ROBOT UPDATES SELECTION IN DASHBOARD
@@ -41,75 +41,37 @@ misty.Debug("we are stepping through 2");
 
 
 
-misty.SetImageDisplaySettings("XtoeLayer1", false, false, true, 1.0, 110, 110, "Uniform", true, 0, "Left", "Top", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer1", false, false, false, 1.0, 110, 110, "Uniform", true, 0, "Left", "Top", 0,0 );
 
 
-misty.SetImageDisplaySettings("XtoeLayer2", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Top", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer2", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Top", 0,0 );
 
-misty.SetImageDisplaySettings("XtoeLayer3", false, false, true, 1.0, 110, 110, "Uniform", true, 0, "Right", "Top", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer3", false, false, false, 1.0, 110, 110, "Uniform", true, 0, "Right", "Top", 0,0 );
 
-misty.SetImageDisplaySettings("XtoeLayer4", false, false, true, 1.0, 110, 75, "Uniform", true, 0, "Left", "Center", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer4", false, false, false, 1.0, 110, 75, "Uniform", true, 0, "Left", "Center", 0,0 );
 
-misty.SetImageDisplaySettings("XtoeLayer5", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Center", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer5", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Center", 0,0 );
 
-misty.SetImageDisplaySettings("XtoeLayer6", false, false, true, 1.0, 120, 75, "Uniform", true, 0, "Right", "Center", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer6", false, false, false, 1.0, 120, 75, "Uniform", true, 0, "Right", "Center", 0,0 );
 
-misty.SetImageDisplaySettings("XtoeLayer7", false, false, true, 1.0, 110, 85, "Uniform", true, 0, "Left", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer7", false, false, false, 1.0, 110, 85, "Uniform", true, 0, "Left", "Bottom", 0,0 );
 
-misty.SetImageDisplaySettings("XtoeLayer8", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer8", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Bottom", 0,0 );
 
-misty.SetImageDisplaySettings("XtoeLayer9", false, false, true, 1.0, 110, 85, "Uniform", true, 0, "Right", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("XtoeLayer9", false, false, false, 1.0, 110, 85, "Uniform", true, 0, "Right", "Bottom", 0,0 );
 
-misty.Pause(5000);
+//misty.Pause(5000);
 
-misty.SetImageDisplaySettings("XtoeLayer1", null, true);
-misty.Debug("we are stepping through 4");
-misty.Pause(2000);
-
-misty.SetImageDisplaySettings("XtoeLayer2", null, true);
-misty.Debug("we are stepping through 5");
-misty.Pause(2000);
-
-misty.SetImageDisplaySettings("XtoeLayer3", null, true);
-misty.Debug("we are stepping through 6");
-misty.Pause(2000);
-
-misty.SetImageDisplaySettings("XtoeLayer4", null, true);
-misty.Debug("we are stepping through 7");
-misty.Pause(2000);
-
-misty.SetImageDisplaySettings("XtoeLayer5", null, true);
-misty.Debug("we are stepping through 8");
-misty.Pause(2000);
-
-misty.SetImageDisplaySettings("XtoeLayer6", null, true);
-misty.Debug("we are stepping through 9");
-misty.Pause(2000);
-
-misty.SetImageDisplaySettings("XtoeLayer7", null, true);
-misty.Debug("we are stepping through 10");
-misty.Pause(2000);
-
-misty.SetImageDisplaySettings("XtoeLayer8", null, true);
-misty.Debug("we are stepping through 3");
-misty.Pause(2000);
-
-misty.SetImageDisplaySettings("XtoeLayer9", null, true);
-misty.Debug("we are stepping through 3");
-misty.Pause(2000);
-//delete the photo
-misty.SetImageDisplaySettings("MyBoard", null, true);
-misty.Debug("we are stepping through delete the whole board");
 //the Os will be visible as well after I test that all Xs are correctly formatted and fitted on the board
-misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Left", "Top", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 110, 110, "Uniform", true, 0, "Left", "Top", 0,0 );
 misty.SetImageDisplaySettings("OtoeLayer2", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Top", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer3", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Right", "Top", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer4", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Left", "Center", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer3", false, false, false, 1.0, 110, 110, "Uniform", true, 0, "Right", "Top", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer4", false, false, false, 1.0, 110, 75, "Uniform", true, 0, "Left", "Center", 0,0 );
 misty.SetImageDisplaySettings("OtoeLayer5", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Center", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer6", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Right", "Center", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer7", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Left", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer6", false, false, false, 1.0, 120, 75, "Uniform", true, 0, "Right", "Center", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer7", false, false, false, 1.0, 110, 85, "Uniform", true, 0, "Left", "Bottom", 0,0 );
 misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Center", "Bottom", 0,0 );
-misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 90, 70, "Uniform", true, 0, "Right", "Bottom", 0,0 );
+misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 110, 85, "Uniform", true, 0, "Right", "Bottom", 0,0 );
 //PIXEL VALUES WILL BE ADJUSTED ONCE I CAN SEE HOW THEY APPEAR ON THE BOARD -MAY NEED TO UPDATE BOARD SO EVERYTHING LOOKS EVEN
 
 //may not need 9 separte pictures of the same file...misty
@@ -127,10 +89,13 @@ misty.SetImageDisplaySettings("OtoeLayer1", false, false, false, 1.0, 90, 70, "U
 //misty.Pause(4000);
 
 //probably going to roll with global variables instead of defining from within the function
-misty.Set("CurrentPlayer", "player1");
+misty.Set("CurrentPlayer", "player1", false);
 misty.Set("ActiveGame", true, false);
-misty.Set("Player1_Won", "", false); //set to Player1Won or Player2Wond depending on victor
-misty.Set("TieGame", "", false);
+misty.Set("Player1_Won", false, false); //set to Player1Won or Player2Wond depending on victor
+misty.Set("TieGame", false, false);
+misty.Set("Comp1Turn", false, false);
+misty.Set("Comp2Turn",false, false);
+misty.Set("Move", "", false);
 
 misty.Set("WinningCondition",   
 [
@@ -145,7 +110,7 @@ misty.Set("WinningCondition",
 ], false); //save the winning combinations
 
 misty.Set("PlayerSelected", "", false);
-
+/*
 function testit()
 {
 i = 0;
@@ -157,7 +122,7 @@ while(i < 10)
     misty.Debug("WHILE LOOPS WORK CAN YOU BELIEVE THAT");
 i++;
 }
-*/
+
 
 CurrentState = ["O","O","O","O","O","O", "O", "O","O"];
 CurrentState[2] = "X";
@@ -179,57 +144,19 @@ misty.Debug("The Current array values 1-9 " + CurrentState[i+2] + " | index = " 
 
 
 }
-
-
-
+*/
 //BLANKING EVERYTHING OUT TO MAKE SURE THE PHOTOS DISPLAY CURRECTLY FIRST
-/*
 
 
 
-
-
-function Start_Tic_Tac_Toe()
+function CellPlayed()
 {
-    let ActiveGame = true //probably more useful once i can get games to restart after game over
-    let currentPlayer = "player";
-    let StateOfGame = ["", "", "", "", "", "", "", "", ""];
-
-    //Dispaly tie game if the game is a tie
-    //Display Player 1 or 2 one depending on which side one
-    //Display game over sign for a few seconds before ending skill/restarting game
-    //Maybe start new game if button is clicked withing 5-10 seconds after game is over.misty/
-    //otherwise tally of won/loss games is scored then robot should say I won the series + num of games one 
-    // + " out of" num games played - end skill and board
-    //also need to allow program to know who won/loss/tie
-
-    const Player1_Won = "Player1Won";
-
-    const Player2_Won = "Player2Won";
-    const TieGame = "Tie";
-
-    //This function will determine when a picture file will be visible which is updated every turn
-    const winningCondition = 
-    //array that stores all the winning combinations
-    [
-        [0,1,2],
-        [3,4,5],
-        [6,7,8],
-        [0,3,6],
-        [1,4,7],
-        [2,5,8],
-        [0,4,8],
-        [2,4,6]
-    ];
-}
-
-function CellPlayed(){
     const CurrentCells = misty.Get("StateOfGame");
 
 }
 function HandleTheResults()
 {
-    let roundWon = false
+    let roundWon, roundLost = false
     let WC = misty.Get("WinningCondition");
     let CurrentState = misty.Get("StateOfGame");
     let fullBoardNotDraw = false;
@@ -249,54 +176,89 @@ function HandleTheResults()
         }
         if(a === b && b === c)// if three Os are read or three Xs are read in any direction = round one a,b,c = O/X
         {
-            roundWon = true;
-            fullBoardNotDraw = true; // don't allow the draw picture to display even when won game takes all spaces
+            if(a == "X")
+            {
+              roundWon = true;
+              fullBoardNotDraw = true; // don't allow the draw picture to display even when won game takes all spaces
+            }
+            else if(a == "O")
+            {
+                roundLost = true;
+                fullBoardNotDraw = true;
+            }
             break;
         }
 
     }
-    if(roundWon){
+    if(roundWon)
+    {
+        misty.PlayAudio("Iwin.mp3", 90);
         misty.DisplayImage("Player1wins.png","youwin1"); // this will be updated to reflect robot 1 or two
-        misty.SetImageDisplaySettings("youwin1", false, false, true, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("youwin1", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         //playAudio("misty1/2 wins")
         misty.Pause(4000);
         //make the pplayerwon image not visable 
-        misty.SetImageDisplaySettings("youwin1", false, false, false, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("youwin1", false, true);
 
         misty.DisplayImage("Gameover.png", "ItsDone");
-        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(1000);//have the game over blink in and out a few times
-        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(1000);
-        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(1000);//have the game over blink in and out a few times
-        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(1000);
-        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Set("ActiveGame", false, false); //game is no longer active
     }
-    let roundDraw = !CurrentState.includes("");
+
+    if(roundLost)
+    {
+        misty.PlayAudio("ilost.mp3", 90);
+        misty.DisplayImage("Player2wins.png","youwin2"); // this will be updated to reflect robot 1 or two
+        misty.SetImageDisplaySettings("youwin2", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
+        //playAudio("misty1/2 wins")
+        misty.Pause(4000);
+        //make the pplayerwon image not visable 
+        misty.SetImageDisplaySettings("youwin2", false, true);
+
+        misty.DisplayImage("Gameover.png", "ItsDone");
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
+        misty.Pause(1000);//have the game over blink in and out a few times
+        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
+        misty.Pause(1000);
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
+        misty.Pause(1000);//have the game over blink in and out a few times
+        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
+        misty.Pause(1000);
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
+        misty.Set("ActiveGame", false, false); //game is no longer active
+    }
+
+    //let roundDraw = !CurrentState.includes("");
     //just gonna hard code if includes doesn't work
     if(CurrentState[0] != "" && CurrentState[1] != "" && CurrentState[2] != "" && CurrentState[3] != "" &&
     CurrentState[4] != "" && CurrentState[5] != "" && CurrentState[6] != "" && CurrentState[7] != "" && CurrentState[8] != ""
     && fullBoardNotDraw == false)
     {
+        misty.PlayAudio("Draw.mp3", 90);
         misty.DisplayImage("TieGame.png","Draw"); // this will be updated to reflect robot 1 or two
-        misty.SetImageDisplaySettings("Draw", false, false, true, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("Draw", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(4000);
-        //make the pplayerwon image not visable 
-        misty.SetImageDisplaySettings("Draw", false, false, false, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        //make the pplayerwon image not visable/DELETE IT BECAUSE IT ISN'T NEEDED NOW 
+        misty.SetImageDisplaySettings("Draw", false, true);
 
         misty.DisplayImage("Gameover.png", "ItsDone");
-        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(1000);//have the game over blink in and out a few times
-        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(1000);
-        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(1000);//have the game over blink in and out a few times
-        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, false, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Pause(1000);
-        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, none, true, 0, "Center", "Center", 0,0 );
+        misty.SetImageDisplaySettings("ItsDone", false, false, true, 1.0, 300, 152, "None", true, 0, "Center", "Center", 0,0 );
         misty.Set("ActiveGame", false, false); //game is no longer active
     }
     //nextComputerMove(){}
@@ -306,73 +268,188 @@ function HandleTheResults()
 //IF TIME PERMITS I WANT TO ADD SOME TYPE OF AI/ALGORITHM BUT I DON'T WANT IT OPTIMIZED BECAUSE
 //THAT MAY LEAD TO DRAWS EVERY GAME.
 //POSSIBLY IMPLEMENT MINIMAX ALGORITHM
-function GameStart(){
+function GameStart()
+{
     //play audio game is going to start
     var chosetilep1;
+    misty.PlayAudio("GameStart.mp3", 90);
     misty.Pause(3000);
     var isActive = misty.Get("ActiveGame");
-    while(isActive == true)
+    while(misty.Get("ActiveGame") == true)
     {
         misty.Debug("WE ARE INSIDE GAMESTART LOOP YEPEEE");
         //MAY USE API FOR MISTY TO SPEAK SELECTED TILE
         //EITHER THAT OR I HAVE TO UPLOAD 9 AUDIO FILES
         //AND SET UP 9 IF ELSE STATEMENTS BLEH
         //playaudio()
-        Computer1Move();
+        Computer2Move();
 
-        chosentile1 = Computer1Move();
-        misty.Debug("The tile currently selected is " + chosentile1);
+       // chosentile1 = misty.Get("Move");
+      //  misty.Debug("The tile currently selected is " + chosentile1);
         //speakit = "I select tile " + chosentile.toString();
         //speakthetext(speakit);
         misty.Pause(3000);
-        if(chosetilep1 == 0)
+
+        //If computer 1 turn execture computer 1 move else execute computer 2 move
+/*
+        if(misty.Get("Comp1Turn") == true)
         {
-            //this is where we will make a selection visible on the board
-            misty.SetImageDisplaySettings("XtoeLayer1", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Top", 0,0 );
+            //execute player 1s turn
+            misty.Set("Comp2Turn")
+        }
+        else if(misty.Get("Comp2Turn") == true)
+        {
+            //execute player 2s turn
+        }
+        if(misty.Get(""))
+        */
+       // HandleTheResults();
+        if(misty.Get("ActiveGame") == true)//only place next tile if the game isn't already over
+        {
+            chosentile1 = misty.Get("Move");//may need to convert to string
+            misty.Debug("player 2 turn first.. execute");
+            misty.Debug("The tile currently selected is " + chosentile1);
+
+            if(chosetilep1 == 0)
+            {
+                //initiate radom response after selection, but don't actuall display it until after it is done
+                //this is where we will make a selection visible on the board
+                
+                misty.SetImageDisplaySettings("OtoeLayer1", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Top", 0,0 );
+
+            }
+            else if(chosentilep1 == 2)// "",""   0,1,2   the commas count in the array for some reason
+            {
+            
+                misty.SetImageDisplaySettings("OtoeLayer2", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Top", 0,0 );
+
+            }
+            else if(chosetilep1 == 4)
+            {
+                
+
+                misty.SetImageDisplaySettings("OtoeLayer3", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Top", 0,0 );
+
+            }
+            else if(chosetilep1 == 6)
+            {
+                
+
+                misty.SetImageDisplaySettings("OtoeLayer4", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Center", 0,0 );
+
+            }
+            else if(chosetilep1 == 8)
+            {
+                
+
+                misty.SetImageDisplaySettings("OtoeLayer5", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Center", 0,0 );
+
+            }
+            else if(chosetilep1 == 10)
+            {
+                
+
+                misty.SetImageDisplaySettings("OtoeLayer6", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Center", 0,0 );
+
+            }
+            else if(chosetilep1 == 12)
+            {
+                
+
+                misty.SetImageDisplaySettings("OtoeLayer7", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Bottom", 0,0 );
+
+            }
+            else if(chosetilep1 == 14)
+            {
+            
+
+                misty.SetImageDisplaySettings("OtoeLayer8", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Bottom", 0,0 );
+
+            }
+            else if(chosetilep1 == 16)// 
+            {
+                
+
+                misty.SetImageDisplaySettings("OtoeLayer9", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Bottom", 0,0 );
+
+            }
+        }
+//for now player 2 will always make the first move...misty
+
+        HandleTheResults(); //make sure the game isn't over yet
+
+        Computer1Move(); //execute next player move
+        if(misty.Get("ActiveGame") == true)
+        {
+            chosentile1 = misty.Get("Move");//may need to convert to string
+            misty.Debug("player 1 turn next.. execute");
+            misty.Debug("The tile currently selected is " + chosentile1);
+
+            if(chosetilep1 == 0)
+            {
+                //initiate radom response after selection, but don't actuall display it until after it is done
+                //this is where we will make a selection visible on the board
+                randomResponse();
+                misty.SetImageDisplaySettings("XtoeLayer1", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Top", 0,0 );
+
+            }
+            else if(chosentilep1 == 2)// "",""   0,1,2   the commas count in the array for some reason
+            {
+                randomResponse();
+                misty.SetImageDisplaySettings("XtoeLayer2", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Top", 0,0 );
+
+            }
+            else if(chosetilep1 == 4)
+            {
+                randomResponse();
+
+                misty.SetImageDisplaySettings("XtoeLayer3", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Top", 0,0 );
+
+            }
+            else if(chosetilep1 == 6)
+            {
+                randomResponse();
+
+                misty.SetImageDisplaySettings("XtoeLayer4", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Center", 0,0 );
+
+            }
+            else if(chosetilep1 == 8)
+            {
+                randomResponse();
+
+                misty.SetImageDisplaySettings("XtoeLayer5", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Center", 0,0 );
+
+            }
+            else if(chosetilep1 == 10)
+            {
+                randomResponse();
+
+                misty.SetImageDisplaySettings("XtoeLayer6", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Center", 0,0 );
+
+            }
+            else if(chosetilep1 == 12)
+            {
+                randomResponse();
+
+                misty.SetImageDisplaySettings("XtoeLayer7", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Bottom", 0,0 );
+
+            }
+            else if(chosetilep1 == 14)
+            {
+                randomResponse();
+
+                misty.SetImageDisplaySettings("XtoeLayer8", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Bottom", 0,0 );
+
+            }
+            else if(chosetilep1 == 16)// 
+            {
+                randomResponse();
+
+                misty.SetImageDisplaySettings("XtoeLayer9", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Bottom", 0,0 );
+
+            }
 
         }
-        else if(chosentilep1 == 1)
-        {
-            misty.SetImageDisplaySettings("XtoeLayer2", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Top", 0,0 );
-
-        }
-        else if(chosetilep1 == 2)
-        {
-            misty.SetImageDisplaySettings("XtoeLayer3", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Top", 0,0 );
-
-        }
-        else if(chosetilep1 == 3)
-        {
-            misty.SetImageDisplaySettings("XtoeLayer4", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Center", 0,0 );
-
-        }
-        else if(chosetilep1 == 4)
-        {
-            misty.SetImageDisplaySettings("XtoeLayer5", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Center", 0,0 );
-
-        }
-        else if(chosetilep1 == 5)
-        {
-            misty.SetImageDisplaySettings("XtoeLayer6", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Center", 0,0 );
-
-        }
-        else if(chosetilep1 == 6)
-        {
-            misty.SetImageDisplaySettings("XtoeLayer7", false, false, true, 1.0, 130, 130, none, true, 0, "Left", "Bottom", 0,0 );
-
-        }
-        else if(chosetilep1 == 7)
-        {
-            misty.SetImageDisplaySettings("XtoeLayer8", false, false, true, 1.0, 130, 130, none, true, 0, "Center", "Bottom", 0,0 );
-
-        }
-        else if(chosetilep1 == 8)
-        {
-            misty.SetImageDisplaySettings("XtoeLayer9", false, false, true, 1.0, 130, 130, none, true, 0, "Right", "Bottom", 0,0 );
-
-        }
-
-
         //check to see if the game is a win or draw for player X
         HandleTheResults();
         //if-elses for computer2 next
@@ -382,46 +459,56 @@ function GameStart(){
 
         //after all that make sure the game isn't over again
     }
+    misty.Pause(10000); //Wait a bit before the whole board and tiles are cleared from the display
+    Reset_Board();
 }
 function Computer1Move()
 {
-    tempArray = [0,1,2,3,4,5,6,7,8]; //this may have to just be curly braces IDK
+    let tempArray = [0,1,2,3,4,5,6,7,8]; //this may have to just be curly braces IDK
     tempArray2 = [];
     tempArray3 = [];
     var st1,st2;
-    vel = 8
-    TheNewArray = [];
+    var vel = 16;
+    let TheNewArray = [];
     currBoard = misty.Get("StateOfGame");
-    move = Math.floor(Math.random() * vel);
-    ispicked = true;
-    while(ispicked == true)
+    var move = Math.floor(Math.random() * vel);
+    let ispicked = false;
+    if(move == 1 || move == 3 || move == 5 || move == 7 || move == 9 || move == 11 || move == 13 || move == 15)
     {
-        misty.Debug("the current tile selected is unavailabe..try again");
+        move = move + 1;// for whatever reason misty accounts for ,(commas) when using an array 
+        //so we need to increment if the random selection in the array happens to be at an index
+        //that posses a , 
+    }
+    while(ispicked == false)
+    {
         if(currBoard[move] == "")
         {
-            ispicked = false;
+            ispicked = true;
             currBoard[move] = "X";
             misty.Set("StateOfGame", currBoard, false ); //update board state with computer 1 selection
-            return move;
+            misty.Set("Move", move, false);
+            misty.Debug("Tile " + move + "successfully inputted..moving on to next move");
         }
         else if(currBoard[move] != "" )
         {
+            misty.Debug("the current tile selected is unavailabe..trying again");
+
             //need to place chosen item at back of line then update line
             tempArray4 = [];
             tempArray4[move] = tempArray[move];
             TheNewArray = tempArray;
-            st1 = tempArray[i];
+            st1 = tempArray[move];
 
                 //currBoard[i] = tempArray[i] ;
-            for(i = move; i <= 8; i++)
+            for(i = move; i <= 16; i+=2)//make sure we are incrementing by to account for the commas in the array
             {
                 //currBoard[i] = tempArray[i] ;
-                if(move != 8){
-                    st2 = tempArray[move+1];
+                if(move != 16){
+                    st2 = tempArray[move+2];// might have to deprecate value by same value increemented before next iteration
                     TheNewArray[i] = st2;
                 }
             }
-            TheNewArray[8] = st1;
+            TheNewArray[16] = st1;
             //make sure the random array select is selecting 
             vel = vel-1;
             move = Math.floor(Math.random() * vel);
@@ -430,7 +517,155 @@ function Computer1Move()
     }
 }
 
-function Computer2Move(){
+function Computer2Move()
+{
+    //logically for now computer 2 will work exactly like computer 1.... computer 2 
+    //is supposed to be replaced by misty mountain robot updating there move in the dashboard tic tac toe board
+    //until then computer 2 and 1 will face off.... no AI AS OF YET.. REALLY NEED ONE
+
+    let tempArray = [0,1,2,3,4,5,6,7,8]; //this may have to just be curly braces IDK
+    tempArray2 = [];
+    tempArray3 = [];
+    var st1,st2;
+    var vel = 16;
+    let TheNewArray = [];
+    currBoard = misty.Get("StateOfGame");
+    var move = Math.floor(Math.random() * vel);
+    let ispicked = false;
+    if(move == 1 || move == 3 || move == 5 || move == 7 || move == 9 || move == 11 || move == 13 || move == 15)
+    {
+        move = move + 1;// for whatever reason misty accounts for ,(commas) when using an array 
+        //so we need to increment if the random selection in the array happens to be at an index
+        //that posses a , 
+    }
+    while(ispicked == false)
+    {
+        if(currBoard[move] == "")
+        {
+            ispicked = true;
+            currBoard[move] = "O";
+            misty.Set("StateOfGame", currBoard, false ); //update board state with computer 1 selection
+            misty.Set("Move", move, false);
+            misty.Debug("Tile " + move + "successfully inputted..moving on to next move");
+        }
+        else if(currBoard[move] != "" )
+        {
+            misty.Debug("the current tile selected is unavailabe..trying again");
+
+            //need to place chosen item at back of line then update line
+            tempArray4 = [];
+            tempArray4[move] = tempArray[move];
+            TheNewArray = tempArray;
+            st1 = tempArray[move];
+
+                //currBoard[i] = tempArray[i] ;
+            for(i = move; i <= 16; i+=2)//make sure we are incrementing by to account for the commas in the array
+            {
+                //currBoard[i] = tempArray[i] ;
+                if(move != 16){
+                    st2 = tempArray[move+2];// might have to deprecate value by same value increemented before next iteration
+                    TheNewArray[i] = st2;
+                }
+            }
+            TheNewArray[16] = st1;
+            //make sure the random array select is selecting 
+            vel = vel-1;
+            move = Math.floor(Math.random() * vel);
+
+        }
+    }
+}
+
+function Reset_Board()
+{
+    //delete all images on misty display... when functionality for restart is added we won't delete board in this function!
+    misty.SetImageDisplaySettings("MyBoard", null, true);
+//Delete all Xs
+    misty.SetImageDisplaySettings("XtoeLayer1", null, true);
+
+    misty.SetImageDisplaySettings("XtoeLayer2", null, true);
+
+    misty.SetImageDisplaySettings("XtoeLayer3", null, true);
+
+    misty.SetImageDisplaySettings("XtoeLayer4", null, true);
+
+    misty.SetImageDisplaySettings("XtoeLayer5", null, true);
+
+    misty.SetImageDisplaySettings("XtoeLayer6", null, true);
+
+    misty.SetImageDisplaySettings("XtoeLayer7", null, true);
+
+    misty.SetImageDisplaySettings("XtoeLayer8", null, true);
+
+    misty.SetImageDisplaySettings("XtoeLayer9", null, true);
+
+    //Delete all potential Os
+    misty.SetImageDisplaySettings("OtoeLayer1", null, true);
+
+    misty.SetImageDisplaySettings("OtoeLayer2", null, true);
+
+    misty.SetImageDisplaySettings("OtoeLayer3", null, true);
+
+    misty.SetImageDisplaySettings("OtoeLayer4", null, true);
+
+    misty.SetImageDisplaySettings("OtoeLayer5", null, true);
+
+    misty.SetImageDisplaySettings("OtoeLayer6", null, true);
+
+    misty.SetImageDisplaySettings("OtoeLayer7", null, true);
+
+    misty.SetImageDisplaySettings("OtoeLayer8", null, true);
+
+    misty.SetImageDisplaySettings("OtoeLayer9", null, true);
+
+    //delete the rest of the images
+    misty.SetImageDisplaySettings("ItsDone", false, true);
 
 }
-*/
+
+function randomResponse()
+{
+    var resp;
+    resp = Math.floor(Math.random() * 3);
+    switch(resp)
+    { //random response everytime misty makes a move
+        case 0:
+            misty.PlayAudio("ohno.mp3", 90);
+            misty.Pause(3000);
+            break;
+        case 1:
+            misty.PlayAudio("ropes.mp3", 90);
+            misty.Pause(3000);
+
+            break;
+        case 2:
+            misty.PlayAudio("nicemove.mp3", 90);
+            misty.Pause(3000);
+
+            break;
+    }
+}
+
+
+
+
+
+
+function DetermineFirstMove()
+{
+    //will execute to randomly decide who goes first... NOT YET IMPLEMENTED
+    var who;
+    who = Math.floor(Math.random() * 2);
+    switch(who){
+        case 0:
+            misty.Set("Comp1Turn", true, false);
+
+            Computer1Move();
+            break;
+        case 1:
+            misty.Set("Comp2Turn", true, false);
+
+            Computer2Move();
+            break;
+    }
+}
