@@ -273,7 +273,7 @@ function GameStart()
                 //initiate radom response after selection, but don't actuall display it until after it is done
                 //this is where we will make a selection visible on the board
                 randomResponse();
-                misty.PlayAudio("tile1", 80);
+                misty.PlayAudio("tile1.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe.png", "XtoeLayer1");
 
@@ -285,7 +285,7 @@ function GameStart()
             else if(chosentilep1 == 2)// "",""   0,1,2   the commas count in the array for some reason
             {
                 randomResponse();
-                misty.PlayAudio("tile2", 80);
+                misty.PlayAudio("tile2.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe2.png", "XtoeLayer2");
 
@@ -295,7 +295,7 @@ function GameStart()
             else if(chosentilep1 == 4)
             {
                 randomResponse();
-                misty.PlayAudio("tile3", 80);
+                misty.PlayAudio("tile3.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe3.png", "XtoeLayer3");
 
@@ -305,7 +305,7 @@ function GameStart()
             else if(chosentilep1 == 6)
             {
                 randomResponse();
-                misty.PlayAudio("tile4", 80);
+                misty.PlayAudio("tile4.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe4.png", "XtoeLayer4");
 
@@ -315,7 +315,7 @@ function GameStart()
             else if(chosentilep1 == 8)
             {
                 randomResponse();
-                misty.PlayAudio("tile5", 80);
+                misty.PlayAudio("tile5.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe5.png", "XtoeLayer5");
 
@@ -326,7 +326,7 @@ function GameStart()
             else if(chosentilep1 == 10)
             {
                 randomResponse();
-                misty.PlayAudio("tile6", 80);
+                misty.PlayAudio("tile6.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe6.png", "XtoeLayer6");
 
@@ -336,7 +336,7 @@ function GameStart()
             else if(chosentilep1 == 12)
             {
                 randomResponse();
-                misty.PlayAudio("tile7", 80);
+                misty.PlayAudio("tile7.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe7.png", "XtoeLayer7");
 
@@ -346,7 +346,7 @@ function GameStart()
             else if(chosentilep1 == 14)
             {
                 randomResponse();
-                misty.PlayAudio("tile8", 80);
+                misty.PlayAudio("tile8.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe8.png", "XtoeLayer8");
 
@@ -356,7 +356,7 @@ function GameStart()
             else if(chosentilep1 == 16)// 
             {
                 randomResponse();
-                misty.PlayAudio("tile9", 80);
+                misty.PlayAudio("tile9.mp3", 80);
                 misty.Pause(1000);
                 misty.DisplayLayerImage("Xtoe9.png", "XtoeLayer9");
 
