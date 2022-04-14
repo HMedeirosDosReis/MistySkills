@@ -12,7 +12,7 @@ misty.Set("Move", "", false);
 Reset_Board();
 //misty.DisplayLayerImage("Otoe4.png", "OtoeLayer4");
 
-testit();
+//testit();
 misty.DisplayLayerImage("BlankBoard2.png", "MyBoard");
 /*
 misty.DisplayLayerImage("Xtoe.png", "XtoeLayer1");
@@ -131,7 +131,7 @@ misty.Set("WinningCondition",
 
 misty.Set("PlayerSelected", "", false);
 
-
+/*
 function testit()
 {
 i = 0;
@@ -199,7 +199,7 @@ misty.Debug("The Current array values 1-9 " + current3[i] + " | index = " + i);
 }
 misty.Pause(20000);
 }
-
+*/
 //BLANKING EVERYTHING OUT TO MAKE SURE THE PHOTOS DISPLAY CURRECTLY FIRST
 
 
@@ -359,10 +359,7 @@ function GameStart()
         //playaudio()
         misty.Debug("WE ARE after the computer2 move ");
 
-       // chosentile1 = misty.Get("Move");
-      //  misty.Debug("The tile currently selected is " + chosentile1);
-        //speakit = "I select tile " + chosentile.toString();
-        //speakthetext(speakit);
+ 
 
         //If computer 1 turn execture computer 1 move else execute computer 2 move
 /*
@@ -377,7 +374,7 @@ function GameStart()
         }
         if(misty.Get(""))
         */
-       // HandleTheResults();
+       
         if(misty.Get("ActiveGame") == true)//only place next tile if the game isn't already over
         {
             Computer2Move();
@@ -631,6 +628,8 @@ function Computer1Move()
         if(currBoard[move] != "X" || currBoard[move] != "O")
         {
             ispicked = true;
+            misty.Set("Move", move, false);
+
             UpdateStateOfGame(move, Comp1Turn);
 
             misty.Debug("Tile " + move + "successfully inputted..moving on to next move.. current Stae of game value =" +currBoard[move]);
@@ -638,7 +637,7 @@ function Computer1Move()
         else if(currBoard[move] == "X" || currBoard[move] == "O" || currBoard[move] == "")
         {
             misty.Debug("the current tile selected is unavailabe..trying again");
-
+            //we need to REPLACE THIS RANDOM MOVE CHOOSER WITH AN AI... MINIMAX POSSIBLY
             //need to place chosen item at back of line then update line
             /*
             tempArray4 = [];
@@ -712,6 +711,7 @@ function Computer2Move()
           
             
             ispicked = true;
+            misty.Set("Move", move, false);
             UpdateStateOfGame(move, Comp2Turn);
             misty.Debug("Tile " + move + "successfully inputted..moving on to next move.. current Stae of game value =" +currBoard[move]);
         }
