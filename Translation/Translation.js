@@ -70,9 +70,9 @@ function _translatedData(data)
     misty.Debug(textToSpeak);
     misty.Set("translation",textToSpeak,false);
 }
-misty.Pause(3000);
+misty.Pause(4000);
 //text to sound
-//misty.Debug(misty.Get("translation"));
+misty.Debug(misty.Get("translation"));
 speakTheText(misty.Get("translation"));
 
 // ==================== Send Text To Google ===========================
