@@ -907,4 +907,4 @@ function UpdateStateOfGame(move,turnof)
  
 
     }
-}
+} //state of game array should be updated  we may need to print it here for testing
