@@ -388,7 +388,7 @@ function speakTheText(text) {
             'text': text
         },
         'voice': {
-            'languageCode': "es-ES",//choose languase for misty to speak
+            'languageCode': "en-US",//choose languase for misty to speak
             'ssmlGender': "MALE" //choose gender
         },
         'audioConfig': {
@@ -397,7 +397,7 @@ function speakTheText(text) {
             "effectsProfileId": [
                 "small-bluetooth-speaker-class-device"
             ],
-            "pitch": 0.7,
+            "pitch": 0.9,
             "speakingRate": 0.85
         }
     });
