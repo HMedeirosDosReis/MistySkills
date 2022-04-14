@@ -525,7 +525,7 @@ function Computer2Move()
             //make sure the random array select is selecting 
             //vel = vel-1;
             move = Math.floor(Math.random() * vel);
-
+//aefaefaefa
         }
     }
 }
