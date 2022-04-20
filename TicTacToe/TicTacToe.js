@@ -262,7 +262,7 @@ function GameStart()
         if(misty.Get("ActiveGame") == true)
         {
             Computer1Move(); //execute next player move
-            misty.Pause(2000);
+            misty.Pause(1000);
 
             chosentilep1 = misty.Get("Move");//may need to convert to string
             misty.Debug("player 1 turn next.. execute");
@@ -366,11 +366,11 @@ function GameStart()
 
         }
         //check to see if the game is a win or draw for player X
-        if(misty.Get("ActiveGame") == true)
-        {
+       // if(misty.Get("ActiveGame") == true)
+      //  {
             HandleTheResults(); //only handleresutls if it hasn't already deemed the game is over
 
-        }
+      //  }
 
         //if-elses for computer2 next
         misty.Debug("we have made it past an iteration of choices..on to the next");
@@ -446,7 +446,7 @@ function Computer1Move()
             */
             move = Math.floor(Math.random() * vel);
             //may need pause for every invalid choice
-            //misty.Pause(500);
+            misty.Pause(500);
 
         }
     }
@@ -479,7 +479,7 @@ function Computer2Move()
         move = move + 1;// for whatever reason misty accounts for ,(commas) when using an array 
         //so we need to increment if the random selection in the array happens to be at an index
         //that posses a , 
-        misty.Debug("the first random num is.." + move)
+        misty.Debug("the first random num is.." + move);
     }
     while(ispicked == false)
     {
@@ -503,7 +503,7 @@ function Computer2Move()
         else if(currBoard[move] == "X" || currBoard[move] == "O")
         {
             misty.Debug("the current tile selected is unavailabe..trying again");
-            misty.Debug("and the current tile selected issss " + move)
+            misty.Debug("and the current tile selected issss " + move);
             //need to place chosen item at back of line then update line
             /*
             tempArray4 = [];
@@ -525,6 +525,7 @@ function Computer2Move()
             //make sure the random array select is selecting 
             //vel = vel-1;
             move = Math.floor(Math.random() * vel);
+            misty.Pause(250);
 //aefaefaefa
         }
     }
@@ -583,23 +584,19 @@ function Reset_Board()
 function randomResponse()
 {
     var resp;
-    resp = Math.floor(Math.random() * 3);
+    resp = Math.floor(Math.random() * 2);
     switch(resp)
     { //random response everytime misty makes a move
         case 0:
-            misty.PlayAudio("ohno.mp3", 90);
+            misty.PlayAudio("nicemove.mp3", 10);
             misty.Pause(3000);
             break;
         case 1:
-            misty.PlayAudio("ropes.mp3", 90);
+            misty.PlayAudio("ropes.mp3", 10);
             misty.Pause(3000);
 
             break;
-        case 2:
-            misty.PlayAudio("nicemove.mp3", 90);
-            misty.Pause(3000);
 
-            break;
     }
 }
 
@@ -710,17 +707,8 @@ function CheckWinState()//add in whos turn it is
 [0,8,16],
 [4,8,12] */
     var curr1,curr2,curr3,curr4,curr5,curr6,curr7,curr8,curr9;
-    /*
-    var WinState1 = misty.Get("WinCondition1");
-    var WinState2 = misty.Get("WinCondition1");
-    var WinState3 = misty.Get("WinCondition1");
-    var WinState4 = misty.Get("WinCondition1");
-    var WinState5 = misty.Get("WinCondition1");
-    var WinState6 = misty.Get("WinCondition1");
-    var WinState7 = misty.Get("WinCondition1");
-    var WinState8 = misty.Get("WinCondition1");
-    */
-   misty.Debug("WEARE INSIDE THE CHECKSTATE FUNCTION");
+
+  // misty.Debug("WEARE INSIDE THE CHECKSTATE FUNCTION");
     var ActualBoardState = misty.Get("StateOfGame");
     curr1 = ActualBoardState[0]; //0
     curr2 = ActualBoardState[2]; //1
@@ -837,10 +825,10 @@ function CheckWinState()//add in whos turn it is
     }
     misty.Debug("we are about to see if the game is a draw!!!");
 
-    if((ActualBoardState[0] == "X" || ActualBoardState[0] == "O") && (ActualBoardState[2] == "X" || ActualBoardState[2] == "O") &&
-    (ActualBoardState[4] == "X" || ActualBoardState[4] == "O") && (ActualBoardState[6] == "X" || ActualBoardState[6] == "O")
-    (ActualBoardState[8] == "X" || ActualBoardState[8] == "O") && (ActualBoardState[10] == "X" || ActualBoardState[10] == "O")
-    (ActualBoardState[12] == "X" || ActualBoardState[12] == "O") && (ActualBoardState[14] == "X" || ActualBoardState[14] == "O")
+    if((ActualBoardState[0] == "X" || ActualBoardState[0] == "O") && (ActualBoardState[2] == "X" || ActualBoardState[2] == "O") && 
+    (ActualBoardState[4] == "X" || ActualBoardState[4] == "O") && (ActualBoardState[6] == "X" || ActualBoardState[6] == "O") &&
+    (ActualBoardState[8] == "X" || ActualBoardState[8] == "O") && (ActualBoardState[10] == "X" || ActualBoardState[10] == "O") &&
+    (ActualBoardState[12] == "X" || ActualBoardState[12] == "O") && (ActualBoardState[14] == "X" || ActualBoardState[14] == "O") &&
     (ActualBoardState[16] == "X" || ActualBoardState[16] == "O") && misty.Get("p2win") == false && misty.Get("p1win") == false)
     {
         misty.Set("DrawGame", true,false);
