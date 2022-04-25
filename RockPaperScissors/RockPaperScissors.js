@@ -16,17 +16,32 @@ function getRandomInt(min, max) {
 //need to get the images
 function _playWithHuman() {
   let num = getRandomInt(1, 9);
+  ///GABI IMAGEs DISPLAYING BEFORE PLAY
+  misty.SetImageDisplaySettings(null, null, null, null, null, 480, 272, "Fill", null, null, null,null);
+  misty.DisplayImage("one.png");
+ // misty.SetImageDisplaySettings(null, null, null, null, null, 100, 100, null, null, null, null,null);
+  misty.Pause(750);
+  misty.DisplayImage("two.png");
+  misty.Pause(750);
+  misty.DisplayImage("three.png");
+  misty.Pause(750);
+
   if (num >= 0 && num <= 2) {
-    misty.DisplayImage("rock.jpg");
+    misty.DisplayImage("rock.png");
     misty.Debug("rock");
+    misty.Pause(3000);
   } else if (num >= 3 && num <= 6) {
-    misty.DisplayImage("paper.jpg");
+    misty.DisplayImage("paper.png");
     misty.Debug("paper");
+    misty.Pause(3000);
   } else {
-    misty.DisplayImage("scissors.jpg");
+    misty.DisplayImage("scissors.png");
     misty.Debug("scissors");
+    misty.Pause(3000);
   }
-  misty.RegisterTimerEvent("playWithHuman", 1200, false);
+  //misty.SetImageDisplaySettings(null, null, null, null, null, 480, 272, null, null, null, null,null);
+  misty.DisplayImage("e_DefaultContent.jpg");
+  misty.RegisterTimerEvent("playWithHuman", 6250, false);
   //can this get any better?
 }
 function connect() {
@@ -80,6 +95,6 @@ function _playwWithMisty() {
   misty.RegisterTimerEvent("playWithMisty", 1200, false);
 }
 //if(something that tells me if im supposed to play with human)
-misty.RegisterTimerEvent("playWithHuman", 1200, true); //need to work in this timer when actually testing
+misty.RegisterTimerEvent("playWithHuman", 8000, true); //need to work in this timer when actually testing
 //else if(something that tells me to play with another misty)
-misty.RegisterTimerEvent("playWithMisty", 1200, true); //need to work in this timer when testing
+//misty.RegisterTimerEvent("playWithMisty", 1200, true); //need to work in this timer when testing
