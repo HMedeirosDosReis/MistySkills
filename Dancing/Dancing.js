@@ -25,7 +25,7 @@ function _moveLeftArm(repeat = true)
         "moveLeftArm",
         1200,
            false);
-    //foesirjgrosiejg
+    
 }
 
 //function that will move misty's right arm
