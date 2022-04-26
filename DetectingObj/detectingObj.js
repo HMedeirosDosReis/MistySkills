@@ -19,21 +19,26 @@ misty.Set("lastHazard", "NotYet");
 misty.AddReturnProperty("Hazard", "DriveStopped");
 misty.RegisterEvent("Hazard", "HazardNotification", 1, true);
 _GetAudioList();
-
+//call method to start detecting objects
 start_object_detection();
 // ------------------------ Random Drive -------------------------------------
-
+//create function that will make misty to drive randomly 
 function _drive_random() 
-{
+{   
+    //degub message
     misty.Debug("Random Drive -> Now Issuing a Drive Command");
+    
     if (Math.random() <= 0.2) 
     {
         drive(0, 0);
+        //debug message
         misty.Debug("Idle State Selected - wait 10-20 sec");
+        //register event
         misty.RegisterTimerEvent("drive_random", getRandomInt(10, 20) * 1000, false);
     } 
     else 
     {
+        
         switch (misty.Get("lastHazard")) 
         {
             case "LEFT":
@@ -50,8 +55,9 @@ function _drive_random()
         misty.RegisterTimerEvent("drive_random", getRandomInt(4, 9) * 1000, false);
     }
 }
+//register event
 misty.RegisterTimerEvent("drive_random", 10, false); 
-
+//function that will make Misty walk
 function drive(lin, ang) 
 {
     if (!misty.Get("inCorrecetion")) 
