@@ -1,3 +1,6 @@
+//Goal: The robot hears a phrase, transforms it to a string, then translates the string to another language,
+//and then gets the string and transforms it in audio. All that using APIs.
+
 //start with sound to text
 register_voice_record_complete();
 //create a pause of 1 second

@@ -1,3 +1,5 @@
+//Goal: Misty answers to some audio inputs based on previously coded interactions.
+
 //Since misty only has so much internal storage, we need to delete the temporary audio files after usage
 //Most likely need to place directly in a function so that they're may be a continuous conversation
 //will be used later with the WIt API
