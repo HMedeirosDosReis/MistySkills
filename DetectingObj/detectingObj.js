@@ -13,8 +13,7 @@
          //if time permits, instead of stopping the robot, we can have it follow the sound of the other robot 
          //to reach its coordinates
         
-
-// Misty Randomly Wanders around 
+ 
 
 misty.Set("inCorrecetion", false);
 misty.Set("lastHazard", "NotYet");
@@ -40,15 +39,17 @@ function _drive_random()
     } 
     else 
     {
-        
+        //if the sensor detects a hazard 
         switch (misty.Get("lastHazard")) 
         {
+            //in the left sensor 
             case "LEFT":
-                drive(getRandomInt(15, 30), getRandomInt(-15, 0));
+                drive(getRandomInt(15, 30), getRandomInt(-15, 0));//drive to try to  trying to find a clear path
                 misty.Set("lastHazard", "NotYet");
                 break;
+            //in the right sensor
             case "RIGHT":
-                drive(getRandomInt(15, 30), getRandomInt(0, 15));
+                drive(getRandomInt(15, 30), getRandomInt(0, 15));//drive to try to  trying to find a clear path
                 misty.Set("lastHazard", "NotYet");
                 break;
             default:
@@ -57,7 +58,7 @@ function _drive_random()
         misty.RegisterTimerEvent("drive_random", getRandomInt(4, 9) * 1000, false);
     }
 }
-//register event
+
 misty.RegisterTimerEvent("drive_random", 10, false); 
 //function that will make Misty walk
 function drive(lin, ang) 
@@ -69,7 +70,7 @@ function drive(lin, ang)
     }
     else
     {
-        misty.Debug("Drive command ignored as Misty is in correction mode");
+        misty.Debug("Drive command ignored as Misty is in correction mode");//degub phrase
     }
 }
 
@@ -87,7 +88,7 @@ function _Hazard(data)
             sensorData.InHazard ? triggers.push(sensorData.SensorName) : {}
         });
     });
-
+    //if the sensors were trigged try to find a path with no hazards
     if (triggers.length && !misty.Get("inCorrecetion")) {
         misty.Set("inCorrecetion", true);
         misty.Set("inCorrecetion", true);
@@ -172,8 +173,7 @@ function _look_around() {
     misty.RegisterTimerEvent("look_around", getRandomInt(5, 10) * 1000, false);
 }
 misty.RegisterTimerEvent("look_around", 100, true); //changed from false to true
-//need to add something extra here. If misty stops because what is directly infront..adjust head setting to see and detect whats infront of her
-//to make sure the object in question isn't there
+
 // -------------------------- Support Function------------------------------------------------
 
 function getRandomInt(min, max) {
