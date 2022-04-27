@@ -1,6 +1,46 @@
 //This is a SHELL FOR MISTY TO PLAY TIC TAC TOE WITH AI/ANOTHER MISTY
 misty.Set("StateOfGame",["_","_","_","_","_","_","_","_","_"], false);
 
+misty.Set("playerturn", "player3", false);
+misty.Debug("We are here now... " + misty.Get("playerturn"));
+
+function catch_turn(data){
+    misty.Debug("Data caught = " + JSON.stringify(data));
+    misty.Set("playerturn", JSON.stringify(data), false);
+}
+
+//DASHBOARD FUNCTIONALITY TEST
+
+let player_turn = "\"player1\"";
+let player_result = "";
+
+function postIt(){
+var arguments = JSON.stringify({
+    
+    
+    'playerturn': "player2"
+        
+    ,
+    'activegame': true
+    ,
+    'boardstate': ["z","z","z","z","z","z","z","z","z"]
+});
+
+misty.SendExternalRequest("POST", "http://10.154.29.50:7700/api/SetTaskInfo", null, null,JSON.stringify(arguments), false, false, null, "application/json","{}");
+misty.Pause(5000);
+//misty.SendExternalRequest("GET", "http://localhost:7700/api/GetTaskInfo", null, null, null, false, false, null, "application/json", "catch_turn");
+
+//misty.Debug("We are here now... " + misty.Get("playerturn"));
+var thegame = JSON.parse(arguments);
+misty.Debug("first val .. " + thegame[0]);
+}
+
+postIt();
+
+
+misty.Pause(30000);
+
+
 
 misty.Set("CurrentPlayer", "player1", false);
 misty.Set("ActiveGame", true, false);
