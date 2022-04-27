@@ -1,3 +1,6 @@
+//Goal: This skill runs on startup. 
+//The only thing that it does is show the IP address of the robot on its screen once you tap on the robot’s chin. 
+
 misty.Set("IPLayer", false);
 
 misty.AddReturnProperty("Touched", "sensorName");
