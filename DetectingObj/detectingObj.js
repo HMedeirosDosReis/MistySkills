@@ -20,7 +20,7 @@ misty.Set("lastHazard", "NotYet");
 misty.AddReturnProperty("Hazard", "DriveStopped");
 misty.RegisterEvent("Hazard", "HazardNotification", 1, true);
 _GetAudioList();
-//call method to start detecting objects
+//call method to start detecting objectsgg
 start_object_detection();
 // ------------------------ Random Drive -------------------------------------
 //create function that will make misty to drive randomly 
@@ -279,7 +279,7 @@ function _object_detection(data) {
         //unregister events so that misty doesn't continue moving/looking around 
 
     }
-    else if (theA == "cChair" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60 ) { 
+    else if (theA == "chair" && data.PropertyTestResults[0].PropertyParent.Confidence >= 0.60 ) { 
       misty.Debug("we found a chair once again man.......");
     //  misty.Stop();
       misty.UnregisterEvent("look_around");//stop misty from looking around immediately
