@@ -20,12 +20,12 @@ function _playWithHuman() {
   let num = getRandomInt(1, 9);
   ///GABI IMAGEs DISPLAYING BEFORE PLAY
   misty.SetImageDisplaySettings(null, null, null, null, null, 480, 272, "Fill", null, null, null,null);
-  misty.DisplayImage("one.png");
+  misty.DisplayImage("three.png");
  // misty.SetImageDisplaySettings(null, null, null, null, null, 100, 100, null, null, null, null,null);
   misty.Pause(750);
   misty.DisplayImage("two.png");
   misty.Pause(750);
-  misty.DisplayImage("three.png");
+  misty.DisplayImage("one.png");
   misty.Pause(750);
 
   if (num >= 0 && num <= 2) {
