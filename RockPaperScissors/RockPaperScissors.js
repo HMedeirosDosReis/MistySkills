@@ -1,3 +1,5 @@
+//Goal: The robot plays rock paper scissors.
+
 /*
 To proceed with this code we need to be able to send external requests 
 our dashboard. this seems to be our best bet at sending/getting data 

@@ -1,4 +1,6 @@
+//Goal: The robot gets a string and uses an API to speak the text in the desired language.
 
+//Misty starts to walk while it detects objects. It plays and audio when the object is found.
 
 // THIS CODE CURRENTLY CAN DETECT an object and move but will stop unusually before reaching objects when other objects are near
 

@@ -1,3 +1,5 @@
+//Goal: In this skill, Misty moves its arms and head. It also turns around and plays an audio. 
+
 
 misty.Debug("The Dancing skill is starting!")
 
