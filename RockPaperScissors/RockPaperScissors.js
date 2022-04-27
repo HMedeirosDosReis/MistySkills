@@ -46,12 +46,11 @@ function _playWithHuman() {
   misty.RegisterTimerEvent("playWithHuman", 6250, false);
   //can this get any better?
 }
-function connect() {
-  ///work on misty connecting to each other
-}
-
+misty.Set("misty2", "",true)
 function score(mistyChoice1, mistyChoice2) {
   //let rock = 0, paper = 1, scissors = 2
+  misty.Debug("C1"+mistyChoice1);
+  misty.Debug("C2"+mistyChoice2);
   if (mistyChoice1 == mistyChoice2);
   else if (mistyChoice1 == 0 && mistyChoice2 == 1);
   else if (mistyChoice1 == 0 && mistyChoice2 == 2);
@@ -64,39 +63,70 @@ function score(mistyChoice1, mistyChoice2) {
   );
   else; //error
   //display score --- need to decide how
+}//.Result.ResponseObject.Data
+function _return(data) {
+  let mistyResult = JSON.stringify(data.Result.ResponseObject.Data)
+  misty.Debug(JSON.parse(mistyResult));
+  let semiStripped = mistyResult.slice(28);
+  let partThatMatter = semiStripped[0];
+  misty.Debug("part"+partThatMatter);
+  misty.Set("misty2", partThatMatter, true);
+  misty.Debug("get"+misty.Get("misty2"));
 }
-function _playwWithMisty() {
-  connect();
-  //connect to the other misty somehow
-  //********** */
+function _playWithMisty() {
   //let rock = 0, paper = 1, scissors = 2
-  let num = getRandomInt(1, 9);
+  let num =getRandomInt(1, 9);
   if (num >= 0 && num <= 2) {
     misty.DisplayImage("rock.jpg");
     misty.Debug("rock");
     misty1 = 0;
     //send the data to the other misty
+    let arguments = JSON.stringify({
+      'misty1':misty1,
+      'misty2':"-"
+
+    });
+    misty.SendExternalRequest("POST", "http://10.154.29.50:7700/api/SetTaskInfo", null, null,JSON.stringify(arguments), false, false, null, "application/json","{}");
     //get data from the other misty
     //misty2=
+    misty.SendExternalRequest("GET", "http://10.154.29.50:7700/api/GetTaskInfo", null, null, null, false, false, null, "application/json","_return")
+    misty2=misty.Get("misty2");
   } else if (num >= 3 && num <= 6) {
     misty.DisplayImage("paper.jpg");
     misty.Debug("paper");
     misty1 = 1;
     //send the data to the other misty
+    let arguments = JSON.stringify({
+      'misty1':misty1,
+      'misty2':"-"
+
+    });
+    misty.SendExternalRequest("POST", "http://10.154.29.50:7700/api/SetTaskInfo", null, null,JSON.stringify(arguments), false, false, null, "application/json","{}");
     //get data from the other misty
     //misty2=
+    misty.SendExternalRequest("GET", "http://10.154.29.50:7700/api/GetTaskInfo", null, null, null, false, false, null, "application/json","_return")
+    misty2=misty.Get("misty2");
   } else {
     misty.DisplayImage("scissors.jpg");
     misty.Debug("scissors");
     misty1 = 2;
     //send the data to the other misty
+    let arguments = JSON.stringify({
+      'misty1':misty1,
+      'misty2':"-"
+
+    });
+    misty.SendExternalRequest("POST", "http://10.154.29.50:7700/api/SetTaskInfo", null, null,JSON.stringify(arguments), false, false, null, "application/json","{}");
     //get data from the other misty
     //misty2=
+    misty.SendExternalRequest("GET", "http://10.154.29.50:7700/api/GetTaskInfo", null, null, null, false, false, null, "application/json","_return")
+    misty2=misty.Get("misty2");
   }
   score(misty1, misty2);
-  misty.RegisterTimerEvent("playWithMisty", 1200, false);
+  misty.RegisterTimerEvent("playWithMisty", 8000, false);
 }
 //if(something that tells me if im supposed to play with human)
-misty.RegisterTimerEvent("playWithHuman", 8000, true); //need to work in this timer when actually testing
+//misty.RegisterTimerEvent("playWithHuman", 8000, true); //need to work in this timer when actually testing
 //else if(something that tells me to play with another misty)
-//misty.RegisterTimerEvent("playWithMisty", 1200, true); //need to work in this timer when testing
+misty.RegisterTimerEvent("playWithMisty", 8000, true); //need to work in this timer when testing
+///_playwWithMisty();
