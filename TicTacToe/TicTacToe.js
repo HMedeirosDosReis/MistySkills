@@ -1,12 +1,69 @@
 //This is a SHELL FOR MISTY TO PLAY TIC TAC TOE WITH AI/ANOTHER MISTY
 misty.Set("StateOfGame",["_","_","_","_","_","_","_","_","_"], false);
+misty.Set("ActiveGame", true, false);
 
-misty.Set("playerturn", "player3", false);
+misty.Set("playerturn", "player1", false);
+
+
 misty.Debug("We are here now... " + misty.Get("playerturn"));
 
-function catch_turn(data){
-    misty.Debug("Data caught = " + JSON.stringify(data));
-    misty.Set("playerturn", JSON.stringify(data), false);
+function _catch_turn(data)
+{
+
+    //THIS FIRST PART SHOULD WORK
+    let plzwork1 = JSON.stringify(data.Result.ResponseObject.Data);
+    let ohgod = JSON.parse(plzwork1);
+    misty.Debug("the contents of the JSON is = "+ ohgod);
+    misty.Debug("the contents of the JSON is = "+ ohgod.playerturn);
+
+    misty.Debug("the contents of the JSON is = "+ ohgod.activegame);
+
+    misty.Debug("the contents of the JSON is = "+ ohgod.boardstate);
+
+    //also try this!!!!!
+    misty.Debug("contents of the json are =" + ohgod["playerturn"] 
+    + " activegame = " + ohgod["activegame"] + " board state = " + ohgod["boardstate"]);
+
+    let baba = data.json();//TEST THIS
+    misty.Debug("the json back is .. " + baba);
+    misty.Debug("the json back is .. " + baba.playerturn);
+
+    misty.Debug("the json back is .. " + baba.activegame);
+
+    misty.Debug("the json back is .. " + baba.boardstate);
+    misty.Debug("YYAYYAYAYA THIS IS IT 1" + baba[0].playerturn);
+
+    let boom = JSON.parse(baba);
+    misty.Debug("attempt at parse = " + boom);
+    misty.Debug("attempt at parse = " + boom.playerturn);
+    misty.Debug("attempt at parse = " + boom.activegame);
+    misty.Debug("attempt at parse = " + boom.boardstate);
+    misty.Debug("attempt at parse = " + boom[0]);
+    misty.Debug("attempt at parse = " + boom[0].playerturn);
+    let chow = JSON.stringify(boom);
+    misty.Debug("attempt at jsonstringify = " + chow);
+/*
+
+
+    let dada = JSON.parse(data);
+    let dada2 = JSON.parse(data.Result.ResponseObject.Data);
+   // misty.Debug("contents of stuff34677 = " + JSON.stringify(data.Result.ResponseObject.Data).toString());
+   misty.Debug("contents of stuff5 = " + data);
+   misty.Debug("contents of stuff5 = " + data.toString());
+   misty.Debug("contents of stuff5 = " + JSON.stringify(data));
+   misty.Debug("contents of stuff5 = " + JSON.stringify(data.toString()));
+        misty.Debug("contents of stuff1 = " + JSON.stringify(data.Result));
+        misty.Debug("contents of stuff5 = " + JSON.parse(JSON.stringify(data)));
+        misty.Debug("contents of stuff5 = " + JSON.parse(JSON.stringify(data.toString())));
+        misty.Debug("contents of stuff5 = " + JSON.parse(data));
+    */
+
+   // console.log(JSON.stringify(data).toString());
+    //const obj = JSON.parse(data.Result.ResponseObject.Data);
+   // misty.Debug("contents of stuff1 = " + JSON.stringify(data.Result));
+   // misty.Debug("Data caught = " +    obj.playerturn + obj + obj.boardstate);
+    
+  //  misty.Set("playerturn", JSON.stringify(data), false);
 }
 
 //DASHBOARD FUNCTIONALITY TEST
@@ -14,36 +71,34 @@ function catch_turn(data){
 let player_turn = "\"player1\"";
 let player_result = "";
 
-function postIt(){
+function postIt(playerturn, isgameactive, board){
 var arguments = JSON.stringify({
     
-    
-    'playerturn': "player2"
-        
-    ,
-    'activegame': true
-    ,
-    'boardstate': ["z","z","z","z","z","z","z","z","z"]
+    "playerturn": playerturn,
+    "activegame": isgameactive,
+    "boardstate": board
 });
 
 misty.SendExternalRequest("POST", "http://10.154.29.50:7700/api/SetTaskInfo", null, null,JSON.stringify(arguments), false, false, null, "application/json","{}");
 misty.Pause(5000);
 //misty.SendExternalRequest("GET", "http://localhost:7700/api/GetTaskInfo", null, null, null, false, false, null, "application/json", "catch_turn");
+//misty.SendExternalRequest("GET", "http://localhost:7700/api/GetTaskInfo", null, null, null, false, false, null, "application/json", "_catch_turn");
 
 //misty.Debug("We are here now... " + misty.Get("playerturn"));
-var thegame = JSON.parse(arguments);
-misty.Debug("first val .. " + thegame[0]);
+//var thegame = JSON.parse(arguments);
+//misty.Debug("first val .. " + JSON.stringify(JSON.parse(thegame)));
 }
 
-postIt();
-
+postIt(misty.Get("playerturn"), misty.Get("ActiveGame"), misty.Get("StateOfGame")); // this is needed when sending updated board to dashboard
+//misty.Pause(5000);
+misty.SendExternalRequest("GET", "http://localhost:7700/api/GetTaskInfo", null, null, null, false, false, null, "application/json", "_catch_turn");
 
 misty.Pause(30000);
 
 
 
 misty.Set("CurrentPlayer", "player1", false);
-misty.Set("ActiveGame", true, false);
+//misty.Set("ActiveGame", true, false);
 misty.Set("Player1_Won", false, false); //set to Player1Won or Player2Wond depending on victor
 misty.Set("TieGame", false, false);
 misty.Set("Comp1Turn", false, false);
