@@ -309,7 +309,7 @@ function ScaleValid(keypoint_one, keypoint_two) {
   return false;
   // misty.Debug("SCLAED DISTANCE : " + scaled_distance.toString());
 }
-
+//s
 function confident(data, threshold = 0.6) {
   if (data.confidence >= threshold) return true;
   return false;
