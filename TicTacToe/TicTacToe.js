@@ -43,8 +43,6 @@ function _catch_turn(data)
     let chow = JSON.stringify(boom);
     misty.Debug("attempt at jsonstringify = " + chow);
 /*
-
-
     let dada = JSON.parse(data);
     let dada2 = JSON.parse(data.Result.ResponseObject.Data);
    // misty.Debug("contents of stuff34677 = " + JSON.stringify(data.Result.ResponseObject.Data).toString());
@@ -524,7 +522,6 @@ function Computer1Move()
             tempArray4[move] = tempArray[move];
             TheNewArray = tempArray;
             st1 = tempArray[move];
-
                 //currBoard[i] = tempArray[i] ;
                 
             for(i = move; i <= 16; i+=2)//make sure we are incrementing by to account for the commas in the array
@@ -605,7 +602,6 @@ function Computer2Move()
             tempArray4[move] = tempArray[move];
             TheNewArray = tempArray;
             st1 = tempArray[move];
-
                 //currBoard[i] = tempArray[i] ;
             for(i = move; i <= 16; i+=2)//make sure we are incrementing by to account for the commas in the array
             {
