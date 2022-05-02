@@ -93,7 +93,7 @@ misty.SendExternalRequest("GET", "http://localhost:7700/api/GetTaskInfo", null, 
 
 misty.Pause(30000);
 
-
+//UPDATED DOCS
 
 misty.Set("CurrentPlayer", "player1", false);
 //misty.Set("ActiveGame", true, false);
@@ -798,7 +798,6 @@ function CheckWinState()//add in whos turn it is
 [0,8,16],
 [4,8,12] */
     var curr1,curr2,curr3,curr4,curr5,curr6,curr7,curr8,curr9;
-
   // misty.Debug("WEARE INSIDE THE CHECKSTATE FUNCTION");
     var ActualBoardState = misty.Get("StateOfGame");
     curr1 = ActualBoardState[0]; //0
