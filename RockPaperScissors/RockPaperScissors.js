@@ -126,7 +126,7 @@ function _playWithMisty() {
   misty.RegisterTimerEvent("playWithMisty", 8000, false);
 }
 //if(something that tells me if im supposed to play with human)
-//misty.RegisterTimerEvent("playWithHuman", 8000, true); //need to work in this timer when actually testing
+misty.RegisterTimerEvent("playWithHuman", 8000, true); //need to work in this timer when actually testing
 //else if(something that tells me to play with another misty)
-misty.RegisterTimerEvent("playWithMisty", 8000, true); //need to work in this timer when testing
+//misty.RegisterTimerEvent("playWithMisty", 8000, true); //need to work in this timer when testing
 ///_playwWithMisty();

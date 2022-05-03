@@ -1,19 +1,19 @@
 {
-    "Name": "detectingObj",
-    "UniqueId": "16eb82b0-6684-4539-a88d-628624916bd0",
-    "Description": "Misty attempts to find object in an area",
-    "StartupRules": [
-      "Manual",
-      "Robot"
-    ],
-    "Language": "javascript",
-    "BroadcastMode": "verbose",
-    "TimeoutInSeconds": 600,
-    "CleanupOnCancel": true,
-    "WriteToLog": false,
-    "Parameters": {
-        "int": 10,
-        "double": 20.5,
-        "string": "twenty"
-    }
+  "Name": "DetectingObj",
+  "UniqueId": "006c722d-d90a-481e-a274-16db35cc81c4",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "verbose",
+  "TimeoutInSeconds": 600,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
   }
+}

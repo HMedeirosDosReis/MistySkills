@@ -23,7 +23,7 @@ function _registerFaceRec()
 //set the faces that misty already recognizes
 function setUp()
 {
-   misty.Set("henrique", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
+   misty.Set("henrique", 100, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
    misty.Set("pablo", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
    misty.Set("luke", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
    misty.Set("drblythe", 0, true, "2f378334-4caf-4af8-9cd4-d9ae3d06304c", 1,1);
