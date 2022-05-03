@@ -741,7 +741,7 @@ function DetermineFirstMove()
 function UpdateStateOfGame(move,turnof)
 {
 
-    //update state of game no matter whos turn it is
+    //update state of game no matter whos turn it isk
     var pick1,pick2,pick3,pick4,pick5,pick6,pick7,pick8,pick9;
     CurrentState = [pick1,pick2,pick3,pick4,pick5,pick6,pick7,pick8,pick9];
     var CurrentState = misty.Get("StateOfGame");
