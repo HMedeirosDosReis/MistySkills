@@ -1,7 +1,7 @@
 //This is a SHELL FOR MISTY TO PLAY TIC TAC TOE WITH AI/ANOTHER MISTY
 misty.Set("StateOfGame",["_","_","_","_","_","_","_","_","_"], false);
 misty.Set("ActiveGame", true, false);
-
+/*
 misty.Set("playerturn", "player1", false);
 
 
@@ -42,7 +42,7 @@ function _catch_turn(data)
     misty.Debug("attempt at parse = " + boom[0].playerturn);
     let chow = JSON.stringify(boom);
     misty.Debug("attempt at jsonstringify = " + chow);
-/*
+
     let dada = JSON.parse(data);
     let dada2 = JSON.parse(data.Result.ResponseObject.Data);
    // misty.Debug("contents of stuff34677 = " + JSON.stringify(data.Result.ResponseObject.Data).toString());
@@ -54,7 +54,7 @@ function _catch_turn(data)
         misty.Debug("contents of stuff5 = " + JSON.parse(JSON.stringify(data)));
         misty.Debug("contents of stuff5 = " + JSON.parse(JSON.stringify(data.toString())));
         misty.Debug("contents of stuff5 = " + JSON.parse(data));
-    */
+    
 
    // console.log(JSON.stringify(data).toString());
     //const obj = JSON.parse(data.Result.ResponseObject.Data);
@@ -92,7 +92,7 @@ postIt(misty.Get("playerturn"), misty.Get("ActiveGame"), misty.Get("StateOfGame"
 misty.SendExternalRequest("GET", "http://localhost:7700/api/GetTaskInfo", null, null, null, false, false, null, "application/json", "_catch_turn");
 
 misty.Pause(30000);
-
+*/
 //UPDATED DOCS
 
 misty.Set("CurrentPlayer", "player1", false);
@@ -144,7 +144,7 @@ function HandleTheResults()
    
     if(roundWon == true)
     {
-        misty.PlayAudio("Iwin.mp3", 90);
+        misty.PlayAudio("Iwin.mp3", 80);
         misty.DisplayLayerImage("Player1wins.png","youwin1"); // this will be updated to reflect robot 1 or two
         misty.SetImageDisplaySettings("youwin1", false, false, true, 1.0, 300, 152, "Uniform", true, 0, "Center", "Center", 0,0 );
         //playAudio("misty1/2 wins")
@@ -192,7 +192,7 @@ function HandleTheResults()
     //just gonna hard code if includes doesn't work
     else if(fullBoardDraw == true)
     {
-        misty.PlayAudio("Draw.mp3", 10);
+        misty.PlayAudio("Draw.mp3", 50);
         misty.DisplayLayerImage("TieGame.png","Draw"); // this will be updated to reflect robot 1 or two
         misty.SetImageDisplaySettings("Draw", false, false, true, 1.0, 300, 152, "Uniform", true, 0, "Center", "Center", 0,0 );
         misty.Pause(4000);
@@ -222,7 +222,7 @@ function GameStart()
 {
     //play audio game is going to start
     var chosentilep1;
-    misty.PlayAudio("GameStart.mp3", 20);
+    misty.PlayAudio("GameStart.mp3", 40);
     misty.Pause(3000);
     misty.Debug("WE ARE outside GAMESTART LOOP YEPEEE");
 
@@ -266,6 +266,8 @@ function GameStart()
                 //initiate radom response after selection, but don't actuall display it until after it is done
                 //this is where we will make a selection visible on the board
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile1.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe.png", "OtoeLayer1");
 
                 misty.SetImageDisplaySettings("OtoeLayer1", false, false, true, 1.0, 110, 110, "Uniform", true, 0, "Left", "Top", 0,0 );
@@ -273,7 +275,9 @@ function GameStart()
             else if(chosentilep1 == 2)// "",""   0,1,2   the commas count in the array for some reason
             {
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
-
+                misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile2.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe2.png", "OtoeLayer2");
 
                 misty.SetImageDisplaySettings("OtoeLayer2", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Top", 0,0 );
@@ -284,6 +288,9 @@ function GameStart()
             {
                 
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile3.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe3.png", "OtoeLayer3");
 
                 misty.SetImageDisplaySettings("OtoeLayer3", false, false, true, 1.0, 110, 110, "Uniform", true, 0, "Right", "Top", 0,0 );
@@ -293,7 +300,9 @@ function GameStart()
             else if(chosentilep1 == 6)
             {
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
-
+                misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile4.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe4.png", "OtoeLayer4");
 
                 misty.SetImageDisplaySettings("OtoeLayer4", false, false, true, 1.0, 110, 65, "Uniform", true, 0, "Left", "Center", 0,0 );
@@ -303,6 +312,9 @@ function GameStart()
             {
                 
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile5.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe5.png", "OtoeLayer5");
 
                 misty.SetImageDisplaySettings("OtoeLayer5", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Center", 0,0 );
@@ -311,7 +323,9 @@ function GameStart()
             else if(chosentilep1 == 10)
             {
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
-
+                misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile6.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe6.png", "OtoeLayer6");
 
                 misty.SetImageDisplaySettings("OtoeLayer6", false, false, true, 1.0, 115, 65, "Uniform", true, 0, "Right", "Center", 0,0 );
@@ -320,6 +334,9 @@ function GameStart()
             else if(chosentilep1 == 12)
             {
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile7.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe7.png", "OtoeLayer7");
 
                 misty.SetImageDisplaySettings("OtoeLayer7", false, false, true, 1.0, 110, 85, "Uniform", true, 0, "Left", "Bottom", 0,0 );
@@ -329,6 +346,9 @@ function GameStart()
             {
             
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile8.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe8.png", "OtoeLayer8");
 
                 misty.SetImageDisplaySettings("OtoeLayer8", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Bottom", 0,0 );
@@ -338,6 +358,9 @@ function GameStart()
             {
                 
                 misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.Debug("we are in a chosen tile and it is the .." + chosentilep1);
+                misty.PlayAudio("c2tile9.mp3", 60);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Otoe9.png", "OtoeLayer9");
 
                 misty.SetImageDisplaySettings("OtoeLayer9", false, false, true, 1.0, 110, 85, "Uniform", true, 0, "Right", "Bottom", 0,0 );
@@ -367,10 +390,10 @@ function GameStart()
                 //this is where we will make a selection visible on the board
                 randomResponse();
                 misty.PlayAudio("tile1.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe.png", "XtoeLayer1");
 
-                
+                //kjkijijuiiuhjuhgyuhsdf
                 misty.SetImageDisplaySettings("XtoeLayer1", false, false, true, 1.0, 110, 110, "Uniform", true, 0, "Left", "Top", 0,0 );
 
 
@@ -379,7 +402,7 @@ function GameStart()
             {
                 randomResponse();
                 misty.PlayAudio("tile2.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe2.png", "XtoeLayer2");
 
                 misty.SetImageDisplaySettings("XtoeLayer2", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Top", 0,0 );
@@ -389,7 +412,7 @@ function GameStart()
             {
                 randomResponse();
                 misty.PlayAudio("tile3.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe3.png", "XtoeLayer3");
 
                 misty.SetImageDisplaySettings("XtoeLayer3", false, false, true, 1.0, 110, 110, "Uniform", true, 0, "Right", "Top", 0,0 );
@@ -399,7 +422,7 @@ function GameStart()
             {
                 randomResponse();
                 misty.PlayAudio("tile4.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe4.png", "XtoeLayer4");
 
                 misty.SetImageDisplaySettings("XtoeLayer4", false, false, true, 1.0, 110, 65, "Uniform", true, 0, "Left", "Center", 0,0 );
@@ -409,7 +432,7 @@ function GameStart()
             {
                 randomResponse();
                 misty.PlayAudio("tile5.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe5.png", "XtoeLayer5");
 
 
@@ -420,7 +443,7 @@ function GameStart()
             {
                 randomResponse();
                 misty.PlayAudio("tile6.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe6.png", "XtoeLayer6");
 
                 misty.SetImageDisplaySettings("XtoeLayer6", false, false, true, 1.0, 115, 70, "Uniform", true, 0, "Right", "Center", 0,0 );
@@ -430,7 +453,7 @@ function GameStart()
             {
                 randomResponse();
                 misty.PlayAudio("tile7.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe7.png", "XtoeLayer7");
 
                 misty.SetImageDisplaySettings("XtoeLayer7", false, false, true, 1.0, 110, 85, "Uniform", true, 0, "Left", "Bottom", 0,0 );
@@ -440,7 +463,7 @@ function GameStart()
             {
                 randomResponse();
                 misty.PlayAudio("tile8.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe8.png", "XtoeLayer8");
 
                 misty.SetImageDisplaySettings("XtoeLayer8", false, false, true, 1.0, 90, 70, "Uniform", true, 0, "Center", "Bottom", 0,0 );
@@ -450,7 +473,7 @@ function GameStart()
             {
                 randomResponse();
                 misty.PlayAudio("tile9.mp3", 60);
-                misty.Pause(1000);
+                misty.Pause(2000);
                 misty.DisplayLayerImage("Xtoe9.png", "XtoeLayer9");
 
                 misty.SetImageDisplaySettings("XtoeLayer9", false, false, true, 1.0, 110, 85, "Uniform", true, 0, "Right", "Bottom", 0,0 );
@@ -473,7 +496,7 @@ function GameStart()
 
         //after all that make sure the game isn't over again
     }
-    misty.Pause(10000); //Wait a bit before the whole board and tiles are cleared from the display
+    misty.Pause(9000); //Wait a bit before the whole board and tiles are cleared from the display
     Reset_Board();
 }
 function Computer1Move()
@@ -679,11 +702,11 @@ function randomResponse()
     switch(resp)
     { //random response everytime misty makes a move
         case 0:
-            misty.PlayAudio("nicemove.mp3", 10);
+            misty.PlayAudio("nicemove.mp3", 30);
             misty.Pause(3000);
             break;
         case 1:
-            misty.PlayAudio("ropes.mp3", 10);
+            misty.PlayAudio("ropes.mp3", 30);
             misty.Pause(3000);
 
             break;

@@ -292,7 +292,7 @@ function _Convo2(data)
     misty.Debug("Current percentage word 1 " + similar(misty.Get("MistyExpects1"), misty.Get("yourResponse")) + "and the word is " + misty.Get("yourResponse"));
    // misty.Debug("Current percentage for word 2.. " + similar(misty.Get("MistyExpects2"), misty.Get("yourResponse")) + "and the word is " + misty.Get("yourResponse"));
     misty.Debug("your response right this second is --- " + misty.Get("yourResponse"));
-
+    misty.Pause(3000);
     _LoopConversation(misty.Get("MistyExpects1"), misty.Get("MistyExpects2"), misty.Get("MQU"));
     
 
@@ -390,7 +390,7 @@ function speakTheText(text) {
             'text': text
         },
         'voice': {
-            'languageCode': "en-US",//choose languase for misty to speak
+            'languageCode': "es-ES",//choose languase for misty to speak
             'ssmlGender': "MALE" //choose gender
         },
         'audioConfig': {

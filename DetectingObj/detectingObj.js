@@ -19,7 +19,7 @@ misty.Set("inCorrecetion", false);
 misty.Set("lastHazard", "NotYet");
 misty.AddReturnProperty("Hazard", "DriveStopped");
 misty.RegisterEvent("Hazard", "HazardNotification", 1, true);
-_GetAudioList();
+//_GetAudioList();
 //call method to start detecting objectsgg
 start_object_detection();
 // ------------------------ Random Drive -------------------------------------
