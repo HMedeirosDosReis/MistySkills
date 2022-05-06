@@ -1,0 +1,31 @@
+Bodacious Battle Bots
+Anikko Barton
+May/05/2022
+
+Plataform used to develop: Windows 10, the language used Javascript,
+and most methods come from the misty SDK.  
+
+This code does not have any bugs. However it is currently only capable of simulating the game through its skill and
+not with another misty robot. The code concerning the API calls rendered error status codes 3 & 4. However, upon further
+research, we weren't able to GET data from our dashboard by the end of the semester.
+
+Next steps to implement for future updates: 
+   Fully develop the dashboard functionality to use in conjunction with both misty robots so they may play tictacttoe together.
+   Able to GET data to the dashboard and convert it to readable format.
+   Websockets and REST API were not used in this skill but we are sure you can integrate it to bypass using dashboard for communication.
+   Add the ability for a user to physically play tictactoe with misty and also select difficulties ranging from Easy to Hard.
+   Add Menu to select COM vs COM, COM vs player, and player vs player.
+
+In order to run this skill, you will need to upload this skill, all its mp3 and image files, and the json
+ file to the robot, using this website: http://sdk.mistyrobotics.com/skill-runner/index.html
+ follow the directions on the website by choosing/drag and dropping the tictactoe files into the skill runner.
+ After the skill is successfully loaded into Misty, simply click start in the skill runner to run the skill.
+ The skill may also be ran directly through the tasks option in our dashboard.
+ You may open the console inspecting the skill runner page so you may see how the skill traverses its code.
+ 
+ You can replace the math.floor within computer1 and computer2s move functions if you want them to make better
+ statistical moves based off probabilities. We suggest using some variation of the minimax algorithm. The only
+ reason it isn't implemented here is because the game would either always end in a draw or one side winning.
+
+ You can replace the image files with anything you like if you want your board to look different than ours.
+ 

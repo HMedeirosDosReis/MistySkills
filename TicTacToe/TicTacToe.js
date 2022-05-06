@@ -27,30 +27,22 @@ it always came back undefined or as [object Object].
 At the time the project was finished, the bodacious battle bots could not find any information to assist them with the GET API call
 function _catch_turn(data)
 {
-
-    
     let plzwork1 = JSON.stringify(data.Result.ResponseObject.Data);
     let ohgod = JSON.parse(plzwork1);
     misty.Debug("the contents of the JSON is = "+ ohgod);
     misty.Debug("the contents of the JSON is = "+ ohgod.playerturn);
-
     misty.Debug("the contents of the JSON is = "+ ohgod.activegame);
-
     misty.Debug("the contents of the JSON is = "+ ohgod.boardstate);
 
     //also try this!!!!!
     misty.Debug("contents of the json are =" + ohgod["playerturn"] 
     + " activegame = " + ohgod["activegame"] + " board state = " + ohgod["boardstate"]);
-
     let baba = data.json();//TEST THIS
     misty.Debug("the json back is .. " + baba);
     misty.Debug("the json back is .. " + baba.playerturn);
-
     misty.Debug("the json back is .. " + baba.activegame);
-
     misty.Debug("the json back is .. " + baba.boardstate);
     misty.Debug("YYAYYAYAYA THIS IS IT 1" + baba[0].playerturn);
-
     let boom = JSON.parse(baba);
     misty.Debug("attempt at parse = " + boom);
     misty.Debug("attempt at parse = " + boom.playerturn);
@@ -60,19 +52,15 @@ function _catch_turn(data)
     misty.Debug("attempt at parse = " + boom[0].playerturn);
     let chow = JSON.stringify(boom);
     misty.Debug("attempt at jsonstringify = " + chow);
-
     let dada = JSON.parse(data);
     let dada2 = JSON.parse(data.Result.ResponseObject.Data);
-
     //const obj = JSON.parse(data.Result.ResponseObject.Data);
    // misty.Debug("contents of stuff1 = " + JSON.stringify(data.Result));
    // misty.Debug("Data caught = " +    obj.playerturn + obj + obj.boardstate);
-    
   //  misty.Set("playerturn", JSON.stringify(data), false);
 }
 
 //DASHBOARD FUNCTIONALITY TEST
-
 
 function postIt(playerturn, isgameactive, board){
 var arguments = JSON.stringify({
@@ -124,12 +112,9 @@ GameStart(); //Start the game after the board has appeared on display
 function HandleTheResults()
 {
     let fullBoardDraw = false;
-
     let roundWon, roundLost = false
-    
     CheckWinState(); //determine if a winning combination is on the board or if it is a draw
     misty.Pause(500);
-
     roundWon = misty.Get("p1win"); //if player 1 won
     roundLost = misty.Get("p2win"); //if player 2 won
     fullBoardDraw = misty.Get("DrawGame"); //draw game
@@ -208,14 +193,12 @@ function GameStart()
     misty.Pause(3000);
     while(misty.Get("ActiveGame") == true)
     {
-    
         if(misty.Get("ActiveGame") == true)//only place next tile if the game isn't already over
         {
             //determine which tile to select for computer 2
             Computer2Move(); //COmputer two will always make the first move unless this code is switched up to pick player randomly
             misty.Pause(2000);
             chosentilep1 = misty.Get("Move");//the tile selected by computer 2
-        
             if(chosentilep1 == 0)
             {
                 //Display O in tile 1 if selected
