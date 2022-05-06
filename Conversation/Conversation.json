@@ -12,8 +12,8 @@
     "CleanupOnCancel": true,
     "WriteToLog": false,
     "Parameters": {
-      "APIKEY_GoogleSTT": "AIzaSyDTF-Tg9BSGSRlPjNao134y9LP0C6mDeOU",
-      "APIKEY_GoogleTTS": "AIzaSyAFKuCkNJ-_ep-3_C_EpKjXkvuYrCTbMW8"
+      "APIKEY_GoogleSTT": "",
+      "APIKEY_GoogleTTS": ""
 
     }
   }

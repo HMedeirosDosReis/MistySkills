@@ -1,0 +1,82 @@
+Bodacious Battle Bots
+Anikko Barton
+May/05/2022
+
+Platform used to develop: Windows 10, the language used Javascript,
+and most methods come from the misty SDK.  
+
+This code has the potential of several bugs. The unpreditable nature of the CaptureGoogleSpeech API call made it difficult using
+Misty's built in methods to pause before executing next line of code. After the initial greeting there are times when misty will 
+flash the blue light as it will indicate, but after taking in audio it will do nothing. Fortunately, most of the time if the
+text is converts your audio from isn't recognized, it will simply ask you to utter a phrase again..
+Caution with this and other parts of the conversation...
+Due to the timers being used with misty.Pause(); depending on the intervals between a failed audio recording and it determining
+what you said wasn't a recognized phrase, it will suddenly start to overlay it audio while its listening for audio again. 
+So be careful when executing the skill and take care to have mostly noise free environment. 
+Simply stop and restart the skill if misty gets stuck no worries.
+
+Next steps to implement for future updates: 
+    Utilize a conversation API for more robust conversations. This also significantly lowers the amount of hard coding.
+    Google Diagflow and WIT.ai APIs were researched for this skill. Diagflow isn't free while WIT is supported by facebook.
+    Add more initial recognizable uttered phrases on top of the current three.
+    Add more recognizable uttered phrases for next part of conversation. Have more branching conversations linked to different
+    parts of conversation depending on how misty responds.
+    Have two Misty robots communicate through dashboard which gives the impression they are actually verbally communicating.
+
+In order to run this skill, you will need to upload this skill, all its mp3 and image files, and the json
+ file to the robot, using this website: http://sdk.mistyrobotics.com/skill-runner/index.html
+ follow the directions on the website by choosing/drag and dropping the tictactoe files into the skill runner.
+ After the skill is successfully loaded into Misty, simply click start in the skill runner to run the skill.
+ The skill may also be ran directly through the tasks option in our dashboard.
+ You may open the console inspecting the skill runner page so you may see how the skill traverses its code.
+ 
+We didn't use audio as a main means of communication between robots due to unreliable pause timers.
+Even if we were to sync up their responses to each other, if there was any interference with audio,
+it would hang up one misty which would ultimately break the conversation. This is why we wanted to 
+use our dashboard to send responses as strings then the other robot would GET that string and respond
+accordingly. This would nulify the issue of audio interference however, if we were to implement it this way,
+we may have desolved our usage of at least the Speech to text API because it would no longer need it to convert string into text.
+However we would still use the TTS API for any audio outputted.
+The STT API can still be utilized between robots, but you would have to heavily manipulate our pause timers so misty won't
+get stuck in infinite loop and break. 
+
+Keep in mind this skill purposefully uses registered events to display its capabilities. You may try replacing certain events
+that are called recursively with while loops to mitigate the issue of multiple events of the same type running at the same time.
+
+Use below guide to speak with misty yourself!
+
+We can change these however we like but start out with these...
+Conversation starter 1:
+How are you misty?                << ---- User utter phrase when they see the blue light.. as long as its within 70% similar the convo will continue
+-Misty response 1:
+ I am fine, how about yourself?   <<------------ Misty 1 response to How are you misty by user or another misty
+ -- misty will then recognize utterances:
+    I am great                    <<------------ Misty 1 needs to recognize misty 2s(users) utterances etc
+    Not too good                  << ----------- simply say one of the these two utterances if misty selects response 1
+(misty will respond once more)
+
+-Misty response 2:
+ Nice and dandy like cotton candy << ----------- Misty 1 response to How are you misty by user or another misty
+ --misty will then recognize utterances:
+   You are funny Misty            << ----------- two utterances Misty will accept for her second initial response
+   You are not candy Misty        << ----------- simply say one of the these two utterances if misty selects response 2
+(misty will respond once more)
+
+
+-Misty response 3:
+ I was fine until you asked       <<------------ Misty 1 response to How are you misty by user or another misty
+ -- misty will recognize utterances:
+    Well sorry I asked            << ----------- two utterances Misty will accept for her second initial response
+    Bad misty bad                 << ----------- simply say one of the these two utterances if misty selects response 3
+(misty will respond once more)
+
+THE CODE CURRENTLY ONLY HAS A SHORT CONVERSATION FOR THE HOW ARE YOU MISTY phrase
+BELOW ARE THE TWO OTHER PHRASES MISTY CAN LISTEN FOR. YOU MAY ADD AS MANY AS YOU LIKE TO THE CODE STRUCTURE
+YOU MAY ALSO ADD AS MANY MISTY RESPONSES TO THAT CONVERSATION STARTER AS YOU LIKE. RIGHT NOW MY CODE IS 
+SETUP TO ONLY ACCEPT TWO RESPONSES FOR MISTY TO RECOGNIZE FOR ANY GIVEN PART OF THE CONVERSATION. 
+YOU CAN MAKE IT MORE THAN 2 OR 1 IF YOU LIKE. ADD MORE FOR MORE VARIED AND INTERESTING CONVERSATION
+Conversation starter 2:
+Are you a robot misty? << ---- User utter phrase when they see the blue light.. as long as its within 70% similar the convo will continue
+
+Conversation starter 3:
+Are we friends misty? << ---- User utter phrase when they see the blue light.. as long as its within 70% similar the convo will continue

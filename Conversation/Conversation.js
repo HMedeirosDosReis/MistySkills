@@ -138,9 +138,7 @@ function _MainConversation()
 {
     misty.MoveArmDegrees("both", 0, 0, 100); //reset misty's arm and head to the original state
     misty.MoveHead(0, 0, 0, 0, 50);
-
     var random_choice = Math.floor(Math.random() * 3); // store random int from 0 - 2
-
     misty.UnregisterEvent("Convo"); //unregister the Convo event so it won't continously run whilst inside this function
 
     //depending on accuracy of a statement,... proceed
@@ -165,7 +163,6 @@ function _MainConversation()
                 //if user's phrase is mostly similar to contents of MistyExpects1
                 misty.Set("mistySecondR1", "Good for you. Goodbye", false); 
 
-                
                 //misty outputs contents of this string as audio
                 //if user's phrase is mostly similar to contents of MistyExpects2
                 misty.Set("mistySecondR2", "I am sorry, I am just a robot, I can't help you with that", false);
@@ -193,8 +190,7 @@ function _MainConversation()
                 misty.Set("mistySecondR2", "They say you are what you eat. I am robot ten candy", false);
                 speakTheText("Nice and dandy like cotton candy");
                 misty.Pause(4000);
-                //set global variables
-
+              
                 //get response from user/robot
                 Start_The_Convo2();
                 misty.Pause(1000);
@@ -217,15 +213,12 @@ function _MainConversation()
                 speakTheText("I was fine until you asked");
                 misty.Pause(3000);
 
-                //set global variables
-
                 //get response from user/robot
                 Start_The_Convo2();
                 misty.Pause(1000);
                 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
                 misty.Pause(8000);
-               
-            break;
+                break;
         }
      }
 
@@ -256,7 +249,7 @@ function _MainConversation()
                 misty.Pause(2000);
                 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
                 misty.Pause(8000);
-            break;
+                break;
             case 1:
                 misty.UnregisterEvent("Convo"); //second attempt at unregistering the previous event...
                 misty.MoveHeadDegrees(-30, -40, -20, 80); // misty reacts to next part of conversation
@@ -303,8 +296,6 @@ function _MainConversation()
      }
      else if(word_accuracy_fr > 70.0) //if contents of friends = "Are we friends"
      {
-
-
         /*
                 //use the code below within the case statements to determine what misty says to the user and
                 //what misty recognizes so she can continue the conversation
@@ -331,7 +322,6 @@ function _MainConversation()
                 misty.CaptureSpeechGoogle(false, 4000, 6500, false, true, "en-us", _params.APIKEY_GoogleSTT);
                 misty.Pause(8000);
         */
-
         switch(random_choice)
         {
             case 0:
@@ -345,13 +335,11 @@ function _MainConversation()
 }
 /******************************************************************************************************************************************* */
 
-
 /************************************************* FUNCTION _ISREADY **************************************************************************/
 //misty will respond to the second utterance she hears
 //parameters: textToSay1 = string, textToSay2 string
 function _IsReady(textToSay1, textToSay2)
 {
-
     misty.UnregisterEvent("Convo2"); //similar to Convo registered event, unregister convo2 so it doesn't continously call its inside function
     wordAcc1 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects1")); //compare what the user states to what phrase misty expects
     wordAcc2 = similar(misty.Get("yourResponse"), misty.Get("MistyExpects2"));
@@ -372,7 +360,6 @@ function _IsReady(textToSay1, textToSay2)
         misty.UnregisterEvent("Convo"); //calls to unregister events didn't work so this is the last line
         misty.UnregisterAllEvents(); //ALL EVENTS ARE STOPPED SO THEIR FUNCTION CALLS WON'T CONTINUE
         //will use this same function in every continueing conversation so it will reset itself
-
        // ending the conversation here for now but can add even more later
      }
      else if(wordAcc2 >= 65.0) //If the user response is mostly similar to the contents of MistyExpects2
